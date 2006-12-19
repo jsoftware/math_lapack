@@ -17,11 +17,11 @@ NB.       (+|:L) mp m  is   V * +|:L
 
 zgeev=: 3 : 0
 
-vsquare y.
+vsquare y
 
-s=. $y.
-n=. lda=. ldvl=. ldvr=. #y.
-a=. zzero + |: y.
+s=. $y
+n=. lda=. ldvl=. ldvr=. #y
+a=. zzero + |: y
 w=. n$zzero
 jobvl=. jobvr=. 'V'
 vl=. vr=. a * zzero
@@ -49,9 +49,9 @@ NB. =========================================================
 NB.*tzgeev v test zgeev
 tzgeev=: 3 : 0
 match=. matchclean;;
-smoutput 'L V R'=. zgeev y.
-smoutput a=. (y. mp R) match V *"1 R
-smoutput b=. ((+|:L) mp y.) match V * +|:L
+smoutput 'L V R'=. zgeev y
+smoutput a=. (y mp R) match V *"1 R
+smoutput b=. ((+|:L) mp y) match V * +|:L
 (0 pick a) *. 0 pick b
 )
 

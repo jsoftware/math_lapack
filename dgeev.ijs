@@ -18,19 +18,19 @@ NB.       (+|:L) mp m  is   V * +|:L
 dgeev=: 3 : 0
 
 NB. validation -----------------------------------
-vsquare y.
+vsquare y
 
 NB. use complex routine if required --------------
-if. iscomplex y. do.
+if. iscomplex y do.
   need 'zgeev'
-  zgeev y.
+  zgeev y
   return.
 end.
 
 NB. define variables needed for DLL call ---------
-s=. $y.
-n=. lda=. ldvl=. ldvr=. #y.
-a=. dzero + |: y.
+s=. $y
+n=. lda=. ldvl=. ldvr=. #y
+a=. dzero + |: y
 wr=. wi=. n$dzero
 jobvl=. jobvr=. 'V'
 vl=. vr=. a * dzero
@@ -50,7 +50,7 @@ rvec=. |:s$vr
 
 if. 1 e. wi ~: 0 do.
   val=. val + j. wi
-  cx=. bx wi ~: 0
+  cx=. I. wi ~: 0
   lvec=. cx cxpair lvec
   rvec=. cx cxpair rvec
 end.
@@ -66,9 +66,9 @@ NB. =========================================================
 NB.*tdgeev v test dgeev       single test
 tdgeev=: 3 : 0
 match=. matchclean;;
-smoutput 'L V R'=. dgeev y.
-smoutput a=. (y. mp R) match V *"1 R
-smoutput b=. ((+|:L) mp y.) match V * +|:L
+smoutput 'L V R'=. dgeev y
+smoutput a=. (y mp R) match V *"1 R
+smoutput b=. ((+|:L) mp y) match V * +|:L
 (0 pick a) *. 0 pick b
 )
 

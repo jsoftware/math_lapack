@@ -15,18 +15,18 @@ NB.         I are the pivot indices
 
 dgetrf=: 3 : 0
 
-vmatrix y.
+vmatrix y
 
-if. iscomplex y. do.
+if. iscomplex y do.
   need 'zgetrf'
-  zgetrf y.
+  zgetrf y
   return.
 end.
 
-'m n'=. $y.
+'m n'=. $y
 mn=. m <. n
 lda=. m
-a=. dzero + |: y.
+a=. dzero + |: y
 ipiv=. mn$izero
 info=. izero
 
@@ -52,7 +52,7 @@ l;u;ipiv
 NB. =========================================================
 NB.*tdgetrf v test dgetrf
 tdgetrf=: 3 : 0
-m=. y.
+m=. y
 match=. matchclean;;
 smoutput 'L U I'=. dgetrf m
 swap=. (I-1) ,each i.#I

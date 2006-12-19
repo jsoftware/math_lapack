@@ -18,11 +18,11 @@ NB. equivalently, X is (%.A) mp B
 
 dgesv=: 3 : 0
 
-'ma mb'=: y.
+'ma mb'=: y
 
 if. (iscomplex ma) +. iscomplex mb do.
   need 'zgesv'
-  zgesv y.
+  zgesv y
   return.
 end.
 
@@ -60,9 +60,9 @@ end.
 NB. =========================================================
 NB.*tdgesv v test dgesv
 tdgesv=: 3 : 0
-'a b'=. y.
+'a b'=. y
 match=. matchclean;;
-smoutput x=. dgesv y.
+smoutput x=. dgesv y
 smoutput r=. b match clean a mp x
 0 pick r
 )

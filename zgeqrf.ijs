@@ -20,13 +20,13 @@ NB.         and mat =  Q mp R
 
 zgeqrf=: 3 : 0
 
-vsquare y.
+vsquare y
 
-'m n'=. $y.
+'m n'=. $y
 s=. m <. n
 lda=. m
 
-a=. zzero + |: y.
+a=. zzero + |: y
 tau=. s $ zzero
 lwork=. 10 * n >. m
 work=. lwork$zzero
@@ -56,7 +56,7 @@ NB.         R is upper triangular
 NB. and  mat =  Q mp R
 
 zgeqrfQ=: 3 : 0
-'h tau r'=: zgeqrf y.
+'h tau r'=: zgeqrf y
 'n m'=. $r
 q=. mp/ (idmat n) -"2 tau * */~"1 |:h
 q;r
@@ -65,7 +65,7 @@ q;r
 NB. =========================================================
 NB.*tzgeqrf v test zgeqrf using zgeqrfQ
 tzgeqrf=: 3 : 0
-if. y. -: '' do. m=. m0 else. m=. y. end.
+if. y -: '' do. m=. m0 else. m=. y end.
 match=. matchclean;[;clean@]
 smoutput 'Q R'=. zgeqrfQ m
 smoutput a=. m match Q mp R

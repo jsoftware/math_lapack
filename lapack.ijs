@@ -1,9 +1,4 @@
-NB. built from project: c:\jx\addon\lapack\lapack\lapack
-
-script_z_ <jpath'~system\main\dll.ijs'
-
-coclass 'jlapack'
-
+NB. built from project: ~Addons/math/lapack/lapack
 NB. lapack utils
 NB.
 NB. lapzero etc.
@@ -25,7 +20,9 @@ NB. utri          return only upper triangular matrix
 NB. sltri         return only strictly lower triangular matrix
 NB. sutri         return only strictly upper triangular matrix
 
-bx=: # i.@#
+coclass 'jlapack'
+
+
 cd=: 15!:0
 
 izero=: 23-23
@@ -60,16 +57,16 @@ NB. =========================================================
 NB.*clean v clean numbers to tolerance (default 1e_10)
 NB. sets values less than tolerance to 0
 clean=: 3 : 0
-1e_10 clean y.
+1e_10 clean y
 :
 
-if. L. y. do.
-  x. clean each y.
+if. L. y do.
+  x clean each y
 else.
-  if. 16 ~: 3!:0 y. do.
-    y. * x. <: |y.
+  if. 16 ~: 3!:0 y do.
+    y * x <: |y
   else.
-    j./"1 y.* x. <: | y.=. +.y.
+    j./"1 y* x <: | y=. +.y
   end.
 end.
 )
@@ -77,21 +74,20 @@ end.
 NB. =========================================================
 NB. cxpair
 cxpair=: 4 : 0
-'i j'=: |: _2 [\ x.
-r=. i {"1 y.
-z=. j. j {"1 y.
+'i j'=: |: _2 [\ x
+r=. i {"1 y
+z=. j. j {"1 y
 n=. (r+z) ,. r-z
-n (i,j)}"1 y.
+n (i,j)}"1 y
 )
 
 NB. =========================================================
 NB. error - display message and signal error
 error=: 3 : 0
-wdinfo y.
+wdinfo y
 error=. 13!:8@1:
 error ''
 )
-
 
 NB. lapack validation
 NB.
@@ -106,29 +102,22 @@ iscomplex=: -. @ (-: +)
 ismatrix=: 2: = #@$
 isreal=: -: +
 issquare=: =/ @ $
+ishermitian=: -: +@|:
 
 NB. =========================================================
 isorthogonal=: 3 : 0
-q=. y. mp |: y.
+q=. y mp |: y
 *./ 0 = clean ,q - idmat $q
 )
 
 NB. =========================================================
-NB. ishermitian=: 3 : 0
-NB. q=. (+|:y.) mp y.
-NB. *./ 0 = clean ,q - idmat $q
-NB. )
-
-ishermitian=: -: +@|:
-
-NB. =========================================================
 issymposdef=: 3 : 0
-if. 0==/$y. do. 0 return. end.
-y.-:|:y.
+if. 0==/$y do. 0 return. end.
+y-:|:y
 )
 
 NB. =========================================================
-f=. 2 : 'm.&(13!:8)@(#&12)@(0: e. v.)'
+f=. 2 : 'm&(13!:8)@(#&12)@(0: e. v)'
 
 vmatrix=: 'argument should be a matrix' f ismatrix
 vhermitian=: 'argument should be a hermitian matrix' f ishermitian [ vmatrix
@@ -139,15 +128,18 @@ vsymposdef=: 'argument should be a symmetric positive-definite matrix' f issympo
 
 NB. lapack definitions
 
-dll=:'lapack.so '
-path=:jpath '~addons\lapack\'
+sys=. (;:'Darwin Linux Win') i. <UNAME
+bin=. > sys { 'vecLib';'lapack.so';'jlapack.dll'
+
+path=: jpath '~addons\math\lapack\'
+dll=: '"',path,bin,'" '
 
 NB. =========================================================
 call=: 4 : 0
-x=. path,dll,x.,'_ + i ',(+:#y.)$' *'
-r=. x cd LASTIN=: , each y.
+x=. dll,x,'_ + i ',(+:#y)$' *'
+r=. x cd LASTIN=: , each y
 if. > {. r do.
-  error x.;'lapack dll return code: ',": > {. r
+  error x;'lapack dll return code: ',": > {. r
 else.
   LASTOUT=: }.r
 end.
@@ -161,11 +153,12 @@ dirs jhostpath path,'doc\*.lap'
 
 NB. =========================================================
 need=: 3 : 0
-require (<path) ,each (;:y.) ,each <'.ijs'
+require (<path) ,each (;:y) ,each <'.ijs'
 )
 
 NB. =========================================================
 routines=: 3 : 0
 if. 0>4!:0 <'dirs' do. load 'dir' end.
-dirs path,'*.ijs'
+dirs jhostpath path,'*.ijs'
 )
+

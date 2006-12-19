@@ -5,22 +5,22 @@ coclass'jlapack'
 NB. =========================================================
 dgesvd=: 3 : 0
 
-vmatrix y.
+vmatrix y
 
-if. iscomplex y. do.
+if. iscomplex y do.
   need 'zgesvd'
-  zgesvd y.
+  zgesvd y
   return.
 end.
 
-'m n'=. $y.
+'m n'=. $y
 mn=. m <. n
 lda=. m
 ldu=. m
 ldvt=. n
 
 jobu=. jobvt=. 'A'
-a=. dzero + |:y.
+a=. dzero + |:y
 
 s=. mn$dzero
 u=. (m,m)$dzero
@@ -49,7 +49,7 @@ u;s;vt
 NB. =========================================================
 NB.*tdgesvd v test dgesvd
 tdgesvd=: 3 : 0
-if. y. -: '' do. m=. m0 else. m=. y. end.
+if. y -: '' do. m=. m0 else. m=. y end.
 match=. matchclean;;
 smoutput 'L S R'=. dgesvd m
 smoutput a=. m match clean L mp S mp |:R

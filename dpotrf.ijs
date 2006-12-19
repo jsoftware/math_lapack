@@ -15,16 +15,16 @@ NB. where L is lower triangular.
 
 dpotrf=: 3 : 0
 
-vsymposdef y.
+vsymposdef y
 
-if. iscomplex y. do.
+if. iscomplex y do.
   need 'zpotrf'
-  zpotrf y.
+  zpotrf y
   return.
 end.
 
-n=. lda=. #y.
-a=. dzero + |: y.
+n=. lda=. #y
+a=. dzero + |: y
 uplo=. 'L'
 info=. izero
 
@@ -43,7 +43,7 @@ ltri |:(n,n)$a
 NB. =========================================================
 NB.*tdpotrf v test dpotrf
 tdpotrf=: 3 : 0
-if. y. -: '' do. m=. m0 else. m=. y. end.
+if. y -: '' do. m=. m0 else. m=. y end.
 match=. matchclean;;
 smoutput L=. dpotrf m
 smoutput a=. m match L mp |: L

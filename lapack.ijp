@@ -1,0 +1,53 @@
+NB. project file: e:/deb/addons/math/lapack/lapack
+
+coclass 'jproject'
+
+PRIMARYFILES=: 0 : 0
+~Addons/math/lapack/util
+~Addons/math/lapack/val
+~Addons/math/lapack/defs
+)
+
+PRIMARYLIBS=: ''
+
+DEVFILES=: ''
+
+DEVLIBS=: ''
+
+OTHERFILES=: 0 : 0
+~Addons/math/lapack/dgeev.ijs
+~Addons/math/lapack/dgeqrf.ijs
+~Addons/math/lapack/dgesv.ijs
+~Addons/math/lapack/dgesvd.ijs
+~Addons/math/lapack/dgetrf.ijs
+~Addons/math/lapack/doc.ijs
+~Addons/math/lapack/dpotrf.ijs
+~Addons/math/lapack/lapack.ijt
+~Addons/math/lapack/lapack.txt
+~Addons/math/lapack/manifest.ijs
+~Addons/math/lapack/test0.ijs
+~Addons/math/lapack/zgeev.ijs
+~Addons/math/lapack/zgeqrf.ijs
+)
+
+TARGETFILE=: '~Addons/math/lapack/lapack.ijs'
+
+TARGETLOCALE=: 'jlapack'
+
+TARGETHEADER=: ''
+
+TARGETEXTRA=: ''
+
+BUILDOPTS=: 0 1 0 0 0 0 0
+
+PREBUILDFILE=: ''
+
+POSTBUILDFILE=: '~Addons/math/lapack/lapsave.ijs'
+
+TESTFILE=: '~Addons/math/lapack/test.ijs'
+
+NOTES=: ''
+
+VERSION=: ''
+
+WINDOWS=: ''

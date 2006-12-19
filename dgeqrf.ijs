@@ -20,19 +20,19 @@ NB. for nonce limited to square matrices:
 
 dgeqrf=: 3 : 0
 
-vsquare y.
+vsquare y
 
-if. iscomplex y. do.
+if. iscomplex y do.
   need 'zgeqrf'
-  zgeqrf y.
+  zgeqrf y
   return.
 end.
 
-'m n'=. $y.
+'m n'=. $y
 s=. m <. n
 lda=. m
 
-a=. dzero + |: y.
+a=. dzero + |: y
 tau=. s $ dzero
 lwork=. 10 * n >. m
 work=. lwork$dzero
@@ -63,7 +63,7 @@ NB.         R is upper triangular
 NB. and  mat =  Q mp R
 
 dgeqrfQ=: 3 : 0
-'h tau r'=: dgeqrf y.
+'h tau r'=: dgeqrf y
 'n m'=: $r
 q=. mp/ (idmat n) -"2 tau * */~"1 |:h
 q;r
@@ -73,8 +73,8 @@ NB. =========================================================
 NB.*tdgeqrf v test dgeqrf using dgeqrfQ
 tdgeqrf=: 3 : 0
 match=. matchclean;[;clean@]
-smoutput 'Q R'=. dgeqrfQ y.
-smoutput a=. y. match Q mp R
+smoutput 'Q R'=. dgeqrfQ y
+smoutput a=. y match Q mp R
 0 pick a
 )
 
