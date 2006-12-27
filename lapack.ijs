@@ -117,7 +117,7 @@ y-:|:y
 )
 
 NB. =========================================================
-f=. 2 : 'm&(13!:8)@(#&12)@(0: e. v)'
+f=. 2 : 'm&(13!:8)@(#&12)@(0 e. v)'
 
 vmatrix=: 'argument should be a matrix' f ismatrix
 vhermitian=: 'argument should be a hermitian matrix' f ishermitian [ vmatrix

@@ -25,7 +25,7 @@ NB. =========================================================
 Lab Section
 The first step in using LAPACK is to load the lapack.ijs script to define the jlapack locale.
 )
-load jpath 'math/lapack'
+load 'math/lapack'
 
 NB. =========================================================
 Lab Section
@@ -35,7 +35,7 @@ dgeev is a LAPACK routine for computing eigenvalues of a real matrix.
 
 If you want to use dgeev you need to load the dgeev script to make the necessary definitions in the jlapack locale.
 )
-load jpath '~addons/math/lapack/dgeev.ijs'
+load 'math/lapack/dgeev'
 
 NB. =========================================================
 Lab Section
@@ -80,14 +80,14 @@ docs_jlapack_ ''  NB. display list of lap files
 NB. =========================================================
 Lab Section
 )
-load jpath '~addons/math/lapack/zgeev.ijs'
+load 'math/lapack/zgeev'
 >1{zgeev_jlapack_ 1j3+m        NB. eigenvalues of complex array
 
 NB. =========================================================
 Lab Section
 dgesvd computes the singular value decomposition (SVD) and left and right singular vectors of a real matrix,
 )
-load jpath '~addons/math/lapack/dgesvd.ijs'
+load 'math/lapack/dgesvd'
 dgesvd_jlapack_ m           NB. SVD
 
 NB. =========================================================
@@ -114,27 +114,27 @@ time 'dgesvd_jlapack_ mat'
 NB. =========================================================
 Lab Section
 )
-load jpath '~addons/math/lapack/dpotrf.ijs'
+load 'math/lapack/dpotrf'
 mp=: +/ . *
 dpotrf_jlapack_ m mp |: m   NB. Cholesky decomposition
 
 NB. =========================================================
 Lab Section
 )
-load jpath '~addons/math/lapack/dgeqrf.ijs'
+load 'math/lapack/dgeqrf'
 dgeqrf_jlapack_ m           NB. QR factorization
 
 NB. =========================================================
 Lab Section
 )
-load jpath '~addons/math/lapack/dgesv.ijs'
+load 'math/lapack/dgesv'
 m1=: ?.4 3$30
 dgesv_jlapack_ m;m1         NB. solves m * x = m1
 
 NB. =========================================================
 Lab Section
 )
-load jpath '~addons/math/lapack/dgetrf.ijs'
+load 'math/lapack/dgetrf'
 dgetrf_jlapack_ m           NB. LU decomposition
 
 NB. =========================================================
