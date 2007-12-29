@@ -1,19 +1,19 @@
-NB. zgeev   eigenvalues and eigenvectors of complex square matrix
+NB. zgeev   eigenvalues and eigenvectors of a complex square matrix
 
-coclass'jlapack'
+coclass 'jlapack'
 
 NB. =========================================================
-NB.*zgeev v eigenvalues and eigenvectors of complex square matrix
+NB.*zgeev v eigenvalues and eigenvectors of a complex square matrix
 NB.
 NB. form: zgeev mat
 NB.
 NB. returns: left eigenvectors; eigenvalues; right eigenvectors
 NB.
 NB. if:
-NB.       'L V R' =. zgeev m
+NB.       'L V R' =. zgeev A
 NB. then
-NB.        m mp R      is   V *"1 R
-NB.       (+|:L) mp m  is   V * +|:L
+NB.       A mp R        is   V *"1 R
+NB.       (+|:L) mp A   is   V * +|:L
 
 zgeev=: 3 : 0
 
@@ -34,7 +34,7 @@ arg=. 'jobvl;jobvr;n;a;lda;w;vl;ldvl;vr;ldvr;work;lwork;rwork;info'
 (cutarg arg)=. 'zgeev' call ".arg
 
 if. info~:0 do.
-  'zgeev' error 'info result: ',":info return.
+  error 'zgeev';'info result: ',":info return.
 end.
 
 val=. w

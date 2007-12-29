@@ -1,5 +1,13 @@
 math/lapack - change history
 
+== 1.1.5 ==
+ * fix: error verb call
+ * fix: dgerqf.ijs/dgeqrfQ: datatype branching
+ * chg: lapack.ijs: verbs: idmat, ltmat, utmat, ltri, utri, sltri, sutri
+ * chg: dpotrf.ijs/dpotrf: early datatype check
+ * add: lapack.ijs: verbs: isvector, ismatrixorvector, vmatrixorvector
+ * add: interfaces: dtrtrs.ijs, ztrtrs.ijs, dgerqf.ijs, zgerqf.ijs, zpotrf.ijs, dgees.ijs, zgees.ijs, zgesv.ijs
+
 == 1.1.4 ==
  * chg: vecLib in place to avoid symlink
 

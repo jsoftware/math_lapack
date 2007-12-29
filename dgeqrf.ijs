@@ -3,7 +3,7 @@ NB.
 NB. dgeqrf   returns as per LAPACK
 NB. dgeqrfQ  is a cover that returns Q and R
 
-coclass'jlapack'
+coclass 'jlapack'
 
 NB. =========================================================
 NB.*dgeqrf v QR factorization of a real matrix
@@ -14,13 +14,11 @@ NB. returns: H T R
 NB.
 NB. where:  H & T represent the Hermitian matrix Q
 NB.         R is upper triangular
-NB.         and mat =  Q mp R
-
-NB. for nonce limited to square matrices:
+NB.         Q mp R   is   mat
 
 dgeqrf=: 3 : 0
 
-vsquare y
+vmatrix y
 
 if. iscomplex y do.
   need 'zgeqrf'
@@ -29,11 +27,11 @@ if. iscomplex y do.
 end.
 
 'm n'=. $y
-s=. m <. n
+k=. m <. n
 lda=. m
 
 a=. dzero + |: y
-tau=. s $ dzero
+tau=. k $ dzero
 lwork=. 10 * n >. m
 work=. lwork$dzero
 info=. izero
@@ -43,12 +41,12 @@ arg=. 'm;n;a;lda;tau;work;lwork;info'
 (cutarg arg)=. 'dgeqrf' call ".arg
 
 if. info~:0 do.
-  'dgeqrf' error 'info result: ',":info return.
+  error 'dgeqrf';'info result: ',":info return.
 end.
 
-val=: |: (s,n)$a
+val=. |: (n,m) $a
 r=. utri val
-h=. (idmat n,s) + sltri val
+h=. ((idmat @: $) + sltri) (_,k) {. val
 
 h;tau;r
 )
@@ -60,12 +58,19 @@ NB. returns Q R
 NB.
 NB. where:  Q is Hermitian
 NB.         R is upper triangular
-NB. and  mat =  Q mp R
+NB.         Q mp R   is   mat
 
 dgeqrfQ=: 3 : 0
-'h tau r'=: dgeqrf y
-'n m'=: $r
-q=. mp/ (idmat n) -"2 tau * */~"1 |:h
+
+if. iscomplex y do.
+  need 'zgeqrf'
+  zgeqrfQ y
+  return.
+end.
+
+'h tau r'=. dgeqrf y
+'m n'=. $r
+q=. mp/ (idmat m) -"2 tau * */~"1 |:h
 q;r
 )
 
@@ -78,10 +83,13 @@ smoutput a=. y match Q mp R
 0 pick a
 )
 
+NB. =========================================================
+NB. test matrices:
+
 testdgeqrf=: 3 : 0
 m0=: 8 %~ 2 2$13 9 3 7
-m1=: ?.4 4$10
-NB. m2=: ?.4 3$10
-NB. *./ tdgeqrf &> m0;m1;m2
-*./ tdgeqrf &> m0;m1
+m1=: ?.3 3$10
+m2=: ?.7 4$10
+m3=: ?.4 7$10
+tdgeqrf &> m0;m1;m2;m3
 )

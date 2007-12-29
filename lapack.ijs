@@ -40,17 +40,17 @@ matchclean=: 0: *./ . = clean @ , @: -
 
 NB. =========================================================
 diagmat=: * =@i.@#
-idmat=: {.=/&i.{:
+idmat=: (0 $: ]) :(= ({. -~/&i. {:)@])
 
 mp=: +/ . *
 
-ltmat=: {. >:/&i. {:
-utmat=: {. <:/&i. {:
+ltmat=: (0 $: ]) :(>: ({. -~/&i. {:)@])
+utmat=: (0 $: ]) :(<: ({. -~/&i. {:)@])
 
-ltri=: * ({. >:/&i. {:) @ $
-utri=: * ({. <:/&i. {:) @ $
-sltri=: * ({. >/&i. {:) @ $
-sutri=: * ({. </&i. {:) @ $
+ltri=: (0 $: ]) : (] * (>: ({. -~/&i. {:)@$@]))
+utri=: (0 $: ]) : (] * (<: ({. -~/&i. {:)@$@]))
+sltri=: (0 $: ]) : (] * (> ({. -~/&i. {:)@$@]))
+sutri=: (0 $: ]) : (] * (< ({. -~/&i. {:)@$@]))
 
 
 NB. =========================================================
@@ -97,9 +97,15 @@ NB.    vhermitian
 NB.    vorthogonal
 NB.    vsquare
 NB.    vsymposdef
+NB.
+NB. validation routines that check argument is either
+NB. a matrix or vector:
+NB.    vmatrixorvector
 
 iscomplex=: -. @ (-: +)
+isvector=: 1: = #@$
 ismatrix=: 2: = #@$
+ismatrixorvector=: 1 2 e.~ #@$
 isreal=: -: +
 issquare=: =/ @ $
 ishermitian=: -: +@|:
@@ -120,6 +126,7 @@ NB. =========================================================
 f=. 2 : 'm&(13!:8)@(#&12)@(0 e. v)'
 
 vmatrix=: 'argument should be a matrix' f ismatrix
+vmatrixorvector=: 'argument should be either a matrix or vector' f ismatrixorvector
 vhermitian=: 'argument should be a hermitian matrix' f ishermitian [ vmatrix
 vorthogonal=: 'argument should be an orthogonal matrix' f isorthogonal [ vmatrix
 vsquare=: 'argument should be a square matrix' f issquare [ vmatrix

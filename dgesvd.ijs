@@ -1,8 +1,20 @@
 NB. dgesvd  singular value decomposition of real matrix
 
-coclass'jlapack'
+coclass 'jlapack'
 
 NB. =========================================================
+NB.*dgesvd v singular value decomposition of real matrix
+NB.
+NB. form: dgesvd mat
+NB.
+NB. returns: left singular vectors; diagonal matrix of
+NB.          singular values; right singular vectors
+NB.
+NB. if:
+NB.       'L S R' =. dgesvd A
+NB. then
+NB.        L mp S mp |: R   is   A
+
 dgesvd=: 3 : 0
 
 vmatrix y
@@ -35,7 +47,7 @@ arg=. 'jobu;jobvt;m;n;a;lda;s;u;ldu;vt;ldvt;work;lwork;info'
 (cutarg arg)=. 'dgesvd' call ".arg
 
 if. info~:0 do.
-  'dgesvd' error 'info result: ',":info return.
+  error 'dgesvd';'info result: ',":info return.
 end.
 
 vt=. (n,n)$vt
@@ -49,10 +61,9 @@ u;s;vt
 NB. =========================================================
 NB.*tdgesvd v test dgesvd
 tdgesvd=: 3 : 0
-if. y -: '' do. m=. m0 else. m=. y end.
 match=. matchclean;;
-smoutput 'L S R'=. dgesvd m
-smoutput a=. m match clean L mp S mp |:R
+smoutput 'L S R'=. dgesvd y
+smoutput a=. y match clean L mp S mp |:R
 0 pick a
 )
 

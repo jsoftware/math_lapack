@@ -1,19 +1,19 @@
-NB. dgeev   eigenvalues and eigenvectors of real square matrix
+NB. dgeev   eigenvalues and eigenvectors of a real square matrix
 
 coclass 'jlapack'
 
 NB. =========================================================
-NB.*dgeev v eigenvalues and eigenvectors of real square matrix
+NB.*dgeev v eigenvalues and eigenvectors of a real square matrix
 NB.
 NB. form: dgeev mat
 NB.
 NB. returns: left eigenvectors; eigenvalues; right eigenvectors
 NB.
 NB. if:
-NB.       'L V R' =. dgeev m
+NB.       'L V R' =. dgeev A
 NB. then
-NB.        m mp R      is   V *"1 R
-NB.       (+|:L) mp m  is   V * +|:L
+NB.       A mp R        is   V *"1 R
+NB.       (+|:L) mp A   is   V * +|:L
 
 dgeev=: 3 : 0
 
@@ -43,13 +43,18 @@ arg=. 'jobvl;jobvr;n;a;lda;wr;wi;vl;ldvl;vr;ldvr;work;lwork;info'
 NB. call DLL, reassign variables -----------------
 (cutarg arg)=. 'dgeev' call ".arg
 
+NB. check exit code ------------------------------
+if. info~:0 do.
+  error 'dgeev';'info result: ',":info return.
+end.
+
 NB. define result variables ----------------------
 val=. wr
 lvec=. |:s$vl
 rvec=. |:s$vr
 
 if. 1 e. wi ~: 0 do.
-  val=. val + j. wi
+  val=. val j. wi
   cx=. I. wi ~: 0
   lvec=. cx cxpair lvec
   rvec=. cx cxpair rvec

@@ -1,27 +1,27 @@
-NB. dgesv   solves the real system A * X = B
+NB. zgesv   solves the complex system A * X = B
 
 coclass 'jlapack'
 
 NB. =========================================================
-NB.*dgesv v solves the real system A * X = B
+NB.*zgesv v solves the complex system A * X = B
 NB.
-NB. form: dgesv mata;matb
+NB. form: zgesv mata;matb
 NB.
 NB. returns: X
 NB.
 NB. if:
-NB.       X =. dgesv A;B
+NB.       X =. zgesv A;B
 NB. then
 NB.       A mp X       is   B
 NB.       (%.A) mp B   is   X
 
-dgesv=: 3 : 0
+zgesv=: 3 : 0
 
 'ma mb'=: y
 
-if. (iscomplex ma) +. iscomplex mb do.
-  need 'zgesv'
-  zgesv y
+if. (isreal ma) *. isreal mb do.
+  need 'dgesv'
+  dgesv y
   return.
 end.
 
@@ -30,25 +30,25 @@ vmatrix mb
 
 n=. #ma
 if. n ~: #mb do.
-  error 'dgesv';'matrices should have same number of rows'
+  error 'zgesv';'matrices should have same number of rows'
 end.
 
 nrhs=. {:$mb
 lda=. ldb=. n
 
-a=. dzero + |:ma
-b=. dzero + |:mb
+a=. zzero + |:ma
+b=. zzero + |:mb
 
-ipiv=. n$dzero
+ipiv=. n$zzero
 
 info=. izero
 
 arg=. 'n;nrhs;a;lda;ipiv;b;ldb;info'
 
-(cutarg arg)=. 'dgesv' call ".arg
+(cutarg arg)=. 'zgesv' call ".arg
 
 if. info~:0 do.
-  error 'dgesv';'info result: ',":info return.
+  error 'zgesv';'info result: ',":info return.
 end.
 
 |: (nrhs,n)$ b
@@ -56,11 +56,11 @@ end.
 )
 
 NB. =========================================================
-NB.*tdgesv v test dgesv
-tdgesv=: 3 : 0
+NB.*tzgesv v test zgesv
+tzgesv=: 3 : 0
 'a b'=. y
 match=. matchclean;;
-smoutput x=. dgesv y
+smoutput x=. zgesv y
 smoutput r=. b match clean a mp x
 0 pick r
 )
@@ -68,10 +68,10 @@ smoutput r=. b match clean a mp x
 NB. =========================================================
 NB. test matrices:
 
-testdgesv=: 3 : 0
-ma0=: ?.4 4$100
-mb0=: ?.4 3$50
-ma1=: ?.20 20$100
-mb1=: ?.20 11$50
-tdgesv &> (< ma0;mb0) , (< ma1;mb1)
+testzgesv=: 3 : 0
+ma0=. j./ ?.2 4 4$100
+mb0=. j./ ?.2 4 3$50
+ma1=. j./ ?.2 20 20$100
+mb1=. j./ ?.2 20 11$50
+tzgesv &> (< ma0;mb0) , (< ma1;mb1)
 )

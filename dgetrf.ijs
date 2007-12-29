@@ -8,7 +8,7 @@ NB.
 NB. form: dgetrf mat
 NB.
 NB. returns: L U I
-NB,
+NB.
 NB. where   L is lower triangular
 NB.         U is upper triangular
 NB.         I are the pivot indices
@@ -34,6 +34,10 @@ arg=. 'm;n;a;lda;ipiv;info'
 
 (cutarg arg)=. 'dgetrf' call ".arg
 
+if. info~:0 do.
+  error 'dgetrf';'info result: ',":info return.
+end.
+
 a=. |:(n,m)$a
 
 l=. (idmat m,n) + sltri a
@@ -52,13 +56,12 @@ l;u;ipiv
 NB. =========================================================
 NB.*tdgetrf v test dgetrf
 tdgetrf=: 3 : 0
-m=. y
 match=. matchclean;;
-smoutput 'L U I'=. dgetrf m
+smoutput 'L U I'=. dgetrf y
 swap=. (I-1) ,each i.#I
 swap=. (#~ ~:/ &>) swap
-for_i. swap do. m=. i C. m end.
-smoutput a=. m match L mp U
+for_i. swap do. y=. i C. y end.
+smoutput a=. y match L mp U
 0 pick a
 )
 

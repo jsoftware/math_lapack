@@ -12,15 +12,23 @@ lapack.ijs
 lapack.ijt
 lapack.so
 jlapack.dll
+dgees.ijs
 dgeev.ijs
+dgerqf.ijs
 dgeqrf.ijs
 dgesv.ijs
 dgesvd.ijs
 dgetrf.ijs
 doc.ijs
 dpotrf.ijs
+dtrtrs.ijs
+zgees.ijs
 zgeev.ijs
+zgerqf.ijs
 zgeqrf.ijs
+zgesv.ijs
+zpotrf.ijs
+ztrtrs.ijs
 )
 
 load 'math/lapack'
