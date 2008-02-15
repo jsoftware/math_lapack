@@ -8,7 +8,7 @@ PRIMARYFILES=: 0 : 0
 ~Addons/math/lapack/defs
 )
 
-PRIMARYLIBS=: ''
+PRIMARYLIBS=: 'numeric'
 
 DEVFILES=: ''
 
@@ -17,22 +17,23 @@ DEVLIBS=: ''
 OTHERFILES=: 0 : 0
 ~Addons/math/lapack/dgees.ijs
 ~Addons/math/lapack/dgeev.ijs
-~Addons/math/lapack/dgerqf.ijs
 ~Addons/math/lapack/dgeqrf.ijs
+~Addons/math/lapack/dgerqf.ijs
 ~Addons/math/lapack/dgesv.ijs
 ~Addons/math/lapack/dgesvd.ijs
 ~Addons/math/lapack/dgetrf.ijs
 ~Addons/math/lapack/doc.ijs
 ~Addons/math/lapack/dpotrf.ijs
 ~Addons/math/lapack/dtrtrs.ijs
+~Addons/math/lapack/history.txt
 ~Addons/math/lapack/lapack.ijt
 ~Addons/math/lapack/lapack.txt
 ~Addons/math/lapack/manifest.ijs
 ~Addons/math/lapack/test0.ijs
 ~Addons/math/lapack/zgees.ijs
 ~Addons/math/lapack/zgeev.ijs
-~Addons/math/lapack/zgerqf.ijs
 ~Addons/math/lapack/zgeqrf.ijs
+~Addons/math/lapack/zgerqf.ijs
 ~Addons/math/lapack/zgesv.ijs
 ~Addons/math/lapack/zpotrf.ijs
 ~Addons/math/lapack/ztrtrs.ijs
@@ -50,7 +51,7 @@ BUILDOPTS=: 0 1 0 0 0 0 0
 
 PREBUILDFILE=: ''
 
-POSTBUILDFILE=: '~Addons/math/lapack/lapsave.ijs'
+POSTBUILDFILE=: ''
 
 TESTFILE=: '~Addons/math/lapack/test.ijs'
 

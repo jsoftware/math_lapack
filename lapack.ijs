@@ -20,6 +20,8 @@ NB. utri          return only upper triangular matrix
 NB. sltri         return only strictly lower triangular matrix
 NB. sutri         return only strictly upper triangular matrix
 
+script_z_ '~system/main/numeric.ijs'
+
 coclass 'jlapack'
 
 
@@ -51,25 +53,6 @@ ltri=: (0 $: ]) : (] * (>: ({. -~/&i. {:)@$@]))
 utri=: (0 $: ]) : (] * (<: ({. -~/&i. {:)@$@]))
 sltri=: (0 $: ]) : (] * (> ({. -~/&i. {:)@$@]))
 sutri=: (0 $: ]) : (] * (< ({. -~/&i. {:)@$@]))
-
-
-NB. =========================================================
-NB.*clean v clean numbers to tolerance (default 1e_10)
-NB. sets values less than tolerance to 0
-clean=: 3 : 0
-1e_10 clean y
-:
-
-if. L. y do.
-  x clean each y
-else.
-  if. 16 ~: 3!:0 y do.
-    y * x <: |y
-  else.
-    j./"1 y* x <: | y=. +.y
-  end.
-end.
-)
 
 NB. =========================================================
 NB. cxpair
@@ -137,10 +120,9 @@ NB. lapack definitions
 
 sys=. (;:'Darwin Linux Win') i. <UNAME
 bin=. > sys { 'vecLib';'lapack.so';'jlapack.dll'
-dar=. '/System/Library/Frameworks/vecLib.framework/'
 
 path=: jpath '~addons\math\lapack\'
-dll=: '"',((sys{0 1 1){::dar;path),bin,'" '
+dll=: '"',path,bin,'" '
 
 NB. =========================================================
 call=: 4 : 0

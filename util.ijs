@@ -48,25 +48,6 @@ utri=: (0 $: ]) : (] * (<: ({. -~/&i. {:)@$@]))
 sltri=: (0 $: ]) : (] * (> ({. -~/&i. {:)@$@]))
 sutri=: (0 $: ]) : (] * (< ({. -~/&i. {:)@$@]))
 
-
-NB. =========================================================
-NB.*clean v clean numbers to tolerance (default 1e_10)
-NB. sets values less than tolerance to 0
-clean=: 3 : 0
-1e_10 clean y
-:
-
-if. L. y do.
-  x clean each y
-else.
-  if. 16 ~: 3!:0 y do.
-    y * x <: |y
-  else.
-    j./"1 y* x <: | y=. +.y
-  end.
-end.
-)
-
 NB. =========================================================
 NB. cxpair
 cxpair=: 4 : 0
