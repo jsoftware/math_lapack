@@ -24,7 +24,7 @@ lapack.ijs provides some common definitions.
 
 The interface to an lapack routine is defined in a script
 with the name of the routine. For example, routine dgeev is
-defined in dgeev.ijs.
+defined in geev.ijs.
 
 Attention needs to be paid to the Fortran column-major
 order used in lapack vs the J row-major order.

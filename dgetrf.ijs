@@ -1,75 +1,12 @@
-NB. dgetrf computes an LU factorization of a general M-by-N matrix
+NB. this stub will be removed in future releases
+NB. please, update your sources:
+NB. - replace string 'addons/math/lapack/dgetrf.ijs' by 'addons/math/lapack/getrf.ijs'
+NB. - replace strings 'dgetrf' by 'getrf', 'tdgetrf' by 'tgetrf', 'testdgetrf' by 'testgetrf'
+
+require '~addons/math/lapack/getrf.ijs'
 
 coclass 'jlapack'
 
-NB. =========================================================
-NB.*dgetrf v computes an LU factorization of a general M-by-N matrix
-NB.
-NB. form: dgetrf mat
-NB.
-NB. returns: L U I
-NB.
-NB. where   L is lower triangular
-NB.         U is upper triangular
-NB.         I are the pivot indices
-
-dgetrf=: 3 : 0
-
-vmatrix y
-
-if. iscomplex y do.
-  need 'zgetrf'
-  zgetrf y
-  return.
-end.
-
-'m n'=. $y
-mn=. m <. n
-lda=. m
-a=. dzero + |: y
-ipiv=. mn$izero
-info=. izero
-
-arg=. 'm;n;a;lda;ipiv;info'
-
-(cutarg arg)=. 'dgetrf' call ".arg
-
-if. info~:0 do.
-  error 'dgetrf';'info result: ',":info return.
-end.
-
-a=. |:(n,m)$a
-
-l=. (idmat m,n) + sltri a
-u=. utri a
-
-if. m <: n do.
-  l=. (m,m){.l
-else.
-  u=. (n,n){.u
-end.
-
-l;u;ipiv
-
-)
-
-NB. =========================================================
-NB.*tdgetrf v test dgetrf
-tdgetrf=: 3 : 0
-match=. matchclean;;
-smoutput 'L U I'=. dgetrf y
-swap=. (I-1) ,each i.#I
-swap=. (#~ ~:/ &>) swap
-for_i. swap do. y=. i C. y end.
-smoutput a=. y match L mp U
-0 pick a
-)
-
-NB. =========================================================
-NB. test matrices:
-
-testdgetrf=: 3 : 0
-m0=: ?.4 6$10
-m1=: ?.5 12$10
-tdgetrf &> m0;m1
-)
+dgetrf=: getrf
+tdgetrf=: tgetrf
+testdgetrf=: testgetrf

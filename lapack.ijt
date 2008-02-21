@@ -31,29 +31,29 @@ NB. =========================================================
 Lab Section
 There are hundreds of LAPACK routines but you only load interfaces for the ones you need. The interface is defined in a script with the name of the routine.
 
-dgeev is a LAPACK routine for computing eigenvalues of a real matrix.
+geev is a LAPACK routine for computing eigenvalues of a real or complex matrix.
 
-If you want to use dgeev you need to load the dgeev script to make the necessary definitions in the jlapack locale.
+If you want to use geev you need to load the geev script to make the necessary definitions in the jlapack locale.
 )
-load 'math/lapack/dgeev'
+load 'math/lapack/geev'
 
 NB. =========================================================
 Lab Section
 )
 m=: ?4 4$100
-dgeev_jlapack_ m  NB. compute eigenvalues and eigenvectors
+geev_jlapack_ m  NB. compute eigenvalues and eigenvectors
 
 NB. =========================================================
 Lab Section
 )
->1{dgeev_jlapack_ m  NB. just the eigenvalues
+>1{geev_jlapack_ m  NB. just the eigenvalues
 
 NB. =========================================================
 Lab Section
-If you are going to be using dgeev a lot, you could define it in the base locale so that you do not have to use the full name.
+If you are going to be using geev a lot, you could define it in the base locale so that you do not have to use the full name.
 )
-dgeev=: dgeev_jlapack_
->1{dgeev m
+geev=: geev_jlapack_
+>1{geev m
 
 NB. =========================================================
 Lab Section
@@ -80,15 +80,15 @@ docs_jlapack_ ''  NB. display list of lap files
 NB. =========================================================
 Lab Section
 )
-load 'math/lapack/zgeev'
->1{zgeev_jlapack_ 1j3+m        NB. eigenvalues of complex array
+load 'math/lapack/geev'
+>1{geev_jlapack_ 1j3+m        NB. eigenvalues of complex array
 
 NB. =========================================================
 Lab Section
-dgesvd computes the singular value decomposition (SVD) and left and right singular vectors of a real matrix,
+gesvd computes the singular value decomposition (SVD) and left and right singular vectors of a real or complex matrix,
 )
-load 'math/lapack/dgesvd'
-dgesvd_jlapack_ m           NB. SVD
+load 'math/lapack/gesvd'
+gesvd_jlapack_ m           NB. SVD
 
 NB. =========================================================
 Lab Section
@@ -109,41 +109,37 @@ PREPARE
 time=: 6!:2
 
 NB. time in seconds to compute SVD:
-time 'dgesvd_jlapack_ mat'
+time 'gesvd_jlapack_ mat'
 
 NB. =========================================================
 Lab Section
 )
-load 'math/lapack/dpotrf'
+load 'math/lapack/potrf'
 mp=: +/ . *
-dpotrf_jlapack_ m mp |: m   NB. Cholesky decomposition
+potrf_jlapack_ m mp |: m   NB. Cholesky decomposition
 
 NB. =========================================================
 Lab Section
 )
-load 'math/lapack/dgeqrf'
-dgeqrf_jlapack_ m           NB. QR factorization
+load 'math/lapack/geqrf'
+geqrf_jlapack_ m           NB. QR factorization
 
 NB. =========================================================
 Lab Section
 )
-load 'math/lapack/dgesv'
+load 'math/lapack/gesv'
 m1=: ?.4 3$30
-dgesv_jlapack_ m;m1         NB. solves m * x = m1
+gesv_jlapack_ m;m1         NB. solves m * x = m1
 
 NB. =========================================================
 Lab Section
 )
-load 'math/lapack/dgetrf'
-dgetrf_jlapack_ m           NB. LU decomposition
+load 'math/lapack/getrf'
+getrf_jlapack_ m           NB. LU decomposition
 
 NB. =========================================================
 Lab Section
 routines_jlapack_ lists all the scripts in the lapack directory.
-
-Scripts starting with d are for real (double) routines.
-
-Scripts starting with z are for complex routines.
 )
 
 NB. =========================================================

@@ -17,7 +17,7 @@ up the library.
 
 lapack.ijs defines common things. The interface to an lapack routine
 is defined in a script with the name of the routine. For example,
-routine dgeev is defined in dgeev.ijs.
+routines dgeev and zgeev are defined in geev.ijs.
 
 Attention needs to be paid to the Fortran column-major order vs the 
 J row-major order. Also, work areas and result areas could be 

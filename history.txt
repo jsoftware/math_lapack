@@ -1,7 +1,17 @@
 math/lapack - change history
 
+== 1.1.7 ==
+ * fix: zgeev: array 'work' datatype
+ * fix: dgesv, zgesv: array 'ipiv' datatype
+ * chg: lapack.ijs: 'call' verb: LASTIN preprocessing shifted out into the calling verbs
+ * chg: lapack.ijs: 'diagmat' verb: extended to rectangular case
+ * chg: interfaces merged: dgees and zgees into gees, dgeev and zgeev into geev, dgesv and zgesv into gesv, dgeqrf and zgeqrf into geqrf, dgerqf and zgerqf into gerqf, dpotrf and zpotrf into potrf, dtrtrs and ztrtrs into trtrs
+ * chg: doc.ijs, lapack.ijp, lapack.ijt, test0.ijs, util.ijs are changed appropriately
+ * add: lapack.ijs: verbs: invperm, makepermat, xtoken
+ * add: interfaces: gels, gelss, gesvd (new zgesvd merged with dgesvd), gesvx, getrf (new zgetrf merged with dgetrf)
+
 == 1.1.5 ==
- * fix: error verb call
+ * fix: verb "error" call
  * fix: dgerqf.ijs/dgeqrfQ: datatype branching
  * chg: lapack.ijs: verbs: idmat, ltmat, utmat, ltri, utri, sltri, sutri
  * chg: dpotrf.ijs/dpotrf: early datatype check
