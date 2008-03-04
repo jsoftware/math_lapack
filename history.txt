@@ -1,5 +1,8 @@
 math/lapack - change history
 
+== 1.1.8 ==
+ * fix: gees: always initialize w
+
 == 1.1.7 ==
  * fix: zgeev: array 'work' datatype
  * fix: dgesv, zgesv: array 'ipiv' datatype

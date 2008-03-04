@@ -85,6 +85,8 @@ if. 2b001 (17 b.) x do.
       w=. w j. wi
     end.
   end.
+else.
+  w=. i. 0
 end.
 
 ({. @: > ^: (1=#)) (I. _3 {. #: x) { vs;a;w

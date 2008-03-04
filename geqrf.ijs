@@ -60,6 +60,7 @@ if. info~:0 do.
 end.
 
 q=. h=. r=. izero
+
 if. 2b1101 (17 b.) x do.
   val=. |: (n,m) $a
   if. 2b1100 (17 b.) x do.
