@@ -3,17 +3,20 @@ NB. gees   Schur factorization of a square matrix
 coclass 'jlapack'
 
 NB. =========================================================
-NB.*gees v Schur factorization of a square matrix:
-NB.        Z*T*conjugate_transpose(Z)=A
+NB.*gees v Schur or real Schur factorization of a nonsymmetric
+NB.        square matrix:
+NB.          Z*T*conjugate_transpose(Z)=A
 NB.
 NB. syntax:
 NB.   'Z T V'=. [RMASK] gees A
 NB. where
 NB.   A     - N-by-N matrix
 NB.   RMASK - values to return bit mask: each bit corresponds
-NB.           to value should be returned: 2b100 means
-NB.           "only Z", 2b001 means "only V", 2b111 (default)
-NB.           means "all", 2b000 is prohibited
+NB.           to value should be returned ('x' means either 0
+NB.           or 1): 2b100x means "only Z", 2b001x means
+NB.           "only V", 2bxxx1 means "force to be non-real
+NB.           Schur form", 2b1111 (default) means "all in
+NB.           non-real Schur form", 2b000x is prohibited
 NB.   Z     - N-by-N matrix of Schur vectors. If A is complex,
 NB.           then Z is unitary, otherwise it's orthogonal
 NB.   T     - N-by-N matrix of Schur form. If A is real, then
@@ -28,21 +31,21 @@ NB.   'Z T V'=. gees A
 NB. then
 NB.   A -: Z mp T mp +|:Z
 
-gees=: 2b111&$: : (4 : 0)
+gees=: 2b1111&$: : (4 : 0)
 
-ic=. iscomplex y
+if. (-. 0 1 -: x I. 2 16) +. ((0 ~: #@$) +. (0 ~: L.)) x do.
+  error 'gees';'RMASK should be an integer in range [2,15]'
+end.
+
+ic=. (2b0001 (17 b.) x) +. (iscomplex y)
 zero=. ic {:: dzero ; zzero
 routine=. ic { 'dgees' ,: 'zgees'
 iox=. ic { 9 14 ,: 7 8
 
-if. (-. 0 1 -: x I. 1 8) +. ((0 ~: #@$) +. (0 -: ]) +. (0 ~: L.)) x do.
-  error routine;'RMASK should be an integer in range [1,7]'
-end.
-
 vsquare y
 
 sa=. |.$y
-isvs=. 0 ~: 2b100 (17 b.) x
+isvs=. 0 ~: 2b1000 (17 b.) x
 svsi=. isvs { 0 0 ,: sa
 
 jobvs=. isvs { 'NV'
@@ -72,13 +75,13 @@ if. info~:0 do.
   error routine;'info result: ',":info return.
 end.
 
-if. 2b100 (17 b.) x do.
+if. 2b1000 (17 b.) x do.
   vs=. |:svsi$vs
 end.
-if. 2b010 (17 b.) x do.
+if. 2b0100 (17 b.) x do.
   a=. |:sa$a
 end.
-if. 2b001 (17 b.) x do.
+if. 2b0010 (17 b.) x do.
   if. -. ic do.
     w=. wr
     if. 1 e. wi ~: 0 do.
@@ -89,7 +92,7 @@ else.
   w=. i. 0
 end.
 
-({. @: > ^: (1=#)) (I. _3 {. #: x) { vs;a;w
+({. @: > ^: (1=#)) (I. _3 {. #: _1 (33 b.) x) { vs;a;w
 )
 
 NB. =========================================================

@@ -1,5 +1,8 @@
 math/lapack - change history
 
+== 1.1.9 ==
+ * add: gees: option to specify non-real Schur form
+
 == 1.1.8 ==
  * fix: gees: always initialize w
 
