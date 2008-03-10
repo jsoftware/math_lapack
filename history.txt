@@ -1,5 +1,8 @@
 math/lapack - change history
 
+== 1.1.10 ==
+ * chg: vecLib in place to avoid symlink
+
 == 1.1.9 ==
  * add: gees: option to specify non-real Schur form
 
