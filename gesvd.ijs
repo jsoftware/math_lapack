@@ -33,8 +33,9 @@ NB.   'L S R'=. gesvd A
 NB. then
 NB.   A -: L mp S mp +|:R
 
-gesvd=: 2b111&$: : (4 : 0)
+gesvd=: (2b111&$: : (4 : 0)) " 0 2
 
+y=. z2d y
 ic=. iscomplex y
 zero=. ic {:: dzero ; zzero
 routine=. ic { 'dgesvd' ,: 'zgesvd'

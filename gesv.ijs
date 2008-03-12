@@ -37,8 +37,9 @@ NB.   A -: IPIV invperm~ L mp U
 NB. where
 NB.   P =. makepermat IPIV
 
-gesv=: 2b1000&$: : (4 : 0)
+gesv=: (2b1000&$: : (4 : 0)) " 0 1
 
+y=. z2d each y
 ic=. +./ iscomplex &> y
 zero=. ic {:: dzero ; zzero
 routine=. ic { 'dgesv' ,: 'zgesv'

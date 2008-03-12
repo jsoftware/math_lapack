@@ -21,8 +21,9 @@ NB.   A -: utri A
 NB.   B -: A mp X
 NB.   X -: (%.A) mp B
 
-trtrs=: 3 : 0
+trtrs=: (3 : 0) " 1
 
+y=. z2d each y
 ic=. +./ iscomplex &> y
 zero=. ic {:: dzero ; zzero
 routine=. ic { 'dtrtrs' ,: 'ztrtrs'
@@ -42,8 +43,8 @@ diag=. 'N'
 nrhs=. {: 2 ($!.1) $mvb
 lda=. ldb=. 1 >. n
 
-a=. zero + ma
-b=. zero + |:mvb
+a=. zero + ic (((9 & o.) @: ]) ^: (-. @: [)) ma
+b=. zero + |: ic (((9 & o.) @: ]) ^: (-. @: [)) mvb
 
 info=. izero
 

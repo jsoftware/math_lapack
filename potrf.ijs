@@ -27,8 +27,9 @@ NB.   A -: U mp +|:U
 NB.   L -: ltri L
 NB.   U -: utri U
 
-potrf=: 3 : 0
+potrf=: (3 : 0) " 2
 
+y=. z2d y
 ic=. iscomplex y
 zero=. ic {:: dzero ; zzero
 routine=. ic { 'dpotrf' ,: 'zpotrf'

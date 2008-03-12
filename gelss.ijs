@@ -43,8 +43,9 @@ NB. then
 NB.   B -: A mp X
 NB.   X -: (%.A) mp B
 
-gelss=: 2b1000&$: : (4 : 0)
+gelss=: (2b1000&$: : (4 : 0)) " 0 1
 
+y=. z2d each y
 ic=. +./ iscomplex &> y
 zero=. ic {:: dzero ; zzero
 routine=. ic { 'dgelss' ,: 'zgelss'

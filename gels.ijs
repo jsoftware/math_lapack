@@ -22,8 +22,9 @@ NB. then
 NB.   B -: A mp X
 NB.   X -: (%.A) mp B
 
-gels=: 3 : 0
+gels=: (3 : 0) " 0 1
 
+y=. z2d each y
 ic=. +./ iscomplex &> y
 zero=. ic {:: dzero ; zzero
 routine=. ic { 'dgels' ,: 'zgels'

@@ -66,8 +66,9 @@ NB.   XE   -: (%.AE) mp BE
 NB.   P    =. makepermat IPIV
 NB.   XTRUE - true solution of the system A * X = B
 
-gesvx=: 2b1000000000000&$: : (4 : 0)
+gesvx=: (2b1000000000000&$: : (4 : 0)) " 0 1
 
+y=. z2d each y
 ic=. +./ iscomplex &> y
 zero=. ic {:: dzero ; zzero
 routine=. ic { 'dgesvx' ,: 'zgesvx'
@@ -130,7 +131,7 @@ if. 2b0100000000000 (17 b.) rmask do.
 end.
 if. 2b0011000000000 (17 b.) rmask do.
   af=. |:sa$af
-  if. 2b0010000000000 (17 b.) x do.
+  if. 2b0010000000000 (17 b.) rmask do.
     l=. (idmat sa) + sltri af
   end.
   if. 2b0001000000000 (17 b.) rmask do.

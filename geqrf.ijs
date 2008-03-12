@@ -30,8 +30,9 @@ NB. then
 NB.   Q -: mp/ (idmat M) -"2 TAU * (* +)"0/~"1 |:H
 NB.   A -: Q mp R
 
-geqrf=: 2b1001&$: : (4 : 0)
+geqrf=: (2b1001&$: : (4 : 0)) " 0 2
 
+y=. z2d y
 ic=. iscomplex y
 zero=. ic {:: dzero ; zzero
 routine=. ic { 'dgeqrf' ,: 'zgeqrf'

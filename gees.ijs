@@ -31,12 +31,13 @@ NB.   'Z T V'=. gees A
 NB. then
 NB.   A -: Z mp T mp +|:Z
 
-gees=: 2b1111&$: : (4 : 0)
+gees=: (2b1111&$: : (4 : 0)) " 0 2
 
 if. (-. 0 1 -: x I. 2 16) +. ((0 ~: #@$) +. (0 ~: L.)) x do.
   error 'gees';'RMASK should be an integer in range [2,15]'
 end.
 
+y=. z2d y
 ic=. (2b0001 (17 b.) x) +. (iscomplex y)
 zero=. ic {:: dzero ; zzero
 routine=. ic { 'dgees' ,: 'zgees'

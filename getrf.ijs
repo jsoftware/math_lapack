@@ -32,8 +32,9 @@ NB.   A -: IPIV invperm~ L mp U
 NB. where
 NB.   P =. makepermat IPIV
 
-getrf=: 2b111&$: : (4 : 0)
+getrf=: (2b111&$: : (4 : 0)) " 0 2
 
+y=. z2d y
 ic=. iscomplex y
 zero=. ic {:: dzero ; zzero
 routine=. ic { 'dgetrf' ,: 'zgetrf'

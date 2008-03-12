@@ -1,5 +1,12 @@
 math/lapack - change history
 
+== 1.1.11 ==
+ * fix: gesvx: rmask instead x
+ * fix: reduce datatype via z2d to match iscomplex's result: gees geev gels gelss geqrf gerqf gesvd gesv gesvx getrf potrf trtrs
+ * fix: doc/?gehrd.lap, doc/?gehd2.lap: formatting
+ * chg: rank specified: gees geev gels gelss geqrf gerqf gesvd gesv getrf potrf trtrs
+ * add: lapack.ijs: verb z2d to fix type reduction
+
 == 1.1.10 ==
  * chg: vecLib in place to avoid symlink
 

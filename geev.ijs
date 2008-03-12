@@ -24,8 +24,9 @@ NB. then
 NB.   (A mp R)       is  (V *"1 R)   is  (R mp (diag V))
 NB.   ((+|:L) mp A)  is  (V * +|:L)  is  ((diag V) mp (+|:L))
 
-geev=: 2b111&$: : (4 : 0)
+geev=: (2b111&$: : (4 : 0)) " 0 2
 
+y=. z2d y
 ic=. iscomplex y
 zero=. ic {:: dzero ; zzero
 routine=. ic { 'dgeev' ,: 'zgeev'
