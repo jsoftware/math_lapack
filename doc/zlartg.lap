@@ -1,5 +1,7 @@
 ZLARTG generates a plane rotation so that
    [ -SN  CS  ]     [ G ]     [ 0 ]
+   [  __      ]  .  [   ]  =  [   ]   where CS**2 + |SN|**2 = 1.
+   [ -SN  CS  ]     [ G ]     [ 0 ]
 
 
 This is a faster version of the BLAS1 routine ZROTG, except for the

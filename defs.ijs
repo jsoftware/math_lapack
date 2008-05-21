@@ -2,14 +2,15 @@ NB. lapack definitions
 
 sys=. (;:'Darwin Linux Win') i. <UNAME
 bin=. > sys { 'vecLib';'lapack.so';'jlapack.dll'
+dar=. '/System/Library/Frameworks/vecLib.framework/'
 
 path=: jpath '~addons\math\lapack\'
-dll=: '"',path,bin,'" '
+dll=: '"',((sys{0 1 1){::dar;path),bin,'" '
 
 NB. =========================================================
 call=: 4 : 0
 x=. dll,x,'_ + i ',(+:#y)$' *'
-r=. x cd LASTIN=: , each y
+r=. x cd LASTIN=: y
 if. > {. r do.
   error x;'lapack dll return code: ',": > {. r
 else.

@@ -5,6 +5,7 @@ NB.
 NB. cutarg        cut argument list
 NB. error         display message and signal error
 NB. extijs        ensure script has ijs extension
+NB. z2d           convert complex to float datatype if zero imagine part
 NB.
 NB. matchclean    if clean x-y is all 0
 NB.
@@ -36,6 +37,7 @@ zone=: 2j1-1j1
 
 cutarg=: <;._1 @ (';'&,)
 extijs=: , ((0: < #) *. [: -. '.'"_ e. ]) # '.ijs'"_
+z2d=: [ ^: (-. @ -:) (9 & o.)
 
 mp=: +/ . *
 

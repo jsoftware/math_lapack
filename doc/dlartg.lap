@@ -1,4 +1,5 @@
 DLARTG generate a plane rotation so that
+   [  CS  SN  ]  .  [ F ]  =  [ R ]   where CS**2 + SN**2 = 1.
    [ -SN  CS  ]     [ G ]     [ 0 ]
 
 

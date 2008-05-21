@@ -299,4 +299,3 @@ routines=: 3 : 0
 if. 0>4!:0 <'dirs' do. load 'dir' end.
 dirs jhostpath path,'*.ijs'
 )
-

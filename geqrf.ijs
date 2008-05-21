@@ -71,7 +71,7 @@ if. 2b1101 (17 b.) x do.
     r=. utri val
   end.
   if. 2b1000 (17 b.) x do.
-    q=. mp/ (idmat m,m) -"2 tau * (* +)"0/~"1 |:h
+    q=. mp/ (idmat m) -"2 tau * (* +)"0/~"1 |:h
   end.
 end.
 
