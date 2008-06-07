@@ -207,7 +207,7 @@ NB.              from y
 NB. makepermat - generate inverse permutation matrix P from
 NB.              pivot indices y
 
-ipiv2scrp=: <"1@(#~ ~:/"1)@(i.@# ,. <:)  NB. pivot indices to standard cycle representation of the permutation
+ipiv2scrp=: ((}: ^: ({. -: {:)) &. >)@(<"1)@(i.@# ,. <:)  NB. pivot indices to standard cycle representation of the permutation
 invperm=: C.~ ipiv2scrp
 makepermat=: C. @ ipiv2scrp =/ i. @ #
 

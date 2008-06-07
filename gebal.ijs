@@ -105,16 +105,20 @@ NB.*tgebal v test gebal
 
 tgebal=: 3 : 0
 match=. matchclean;;
-smoutput 'AB ILO IHI SCALE'=. gebal y
-if. #y do.
+n=. #y
+if. 0<n do.
   dlen=. >: IHI-ILO
   IOSdinp=. (<: ILO) + i. dlen
   p=. (>: IOSdinp) IOSdinp } SCALE
   P=. makepermat p
   iP=. |: P
   PAiP=. P mp y mp iP
-  bcut=. 1 (0) } ((<: ILO) , IHI) e.~ i. (#y)
-  'T1 X Y Z10 B Z Z20 Z21 T2'=. , (;~ bcut) <;.1 PAiP
+  if. dlen -: n do.
+    'T1 X Y Z10 B Z Z20 Z21 T2'=. 0 1 0 2 3 2 0 1 0 { (0 0 $ 0) ; ((0,n) $ 0) ; ((n,0) $ 0) ; y
+  else.
+    bcut=. 1 (0) } ((<: ILO) , IHI) e.~ i. n
+    'T1 X Y Z10 B Z Z20 Z21 T2'=. , (;~ bcut) <;.1 PAiP
+  end.
   d=. IOSdinp { SCALE
   D=. diagmat d
   iD=. diagmat % d

@@ -1,5 +1,9 @@
 math/lapack - change history
 
+== 1.1.13 ==
+ * fix: lapack.ijs: ipiv2scrp verb: non-proper output's length when stationary elements presented
+ * fix: gebal: tgebal verb: invalid bcut for dense matrices
+
 == 1.1.12 ==
  * fix: doc/?lartg.lap: formatting
  * add: interfaces: gebal, gehrd, heev (dsyev and zheev combined), lartg
