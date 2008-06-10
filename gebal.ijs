@@ -105,6 +105,7 @@ NB.*tgebal v test gebal
 
 tgebal=: 3 : 0
 match=. matchclean;;
+smoutput 'AB ILO IHI SCALE'=. gebal y
 n=. #y
 if. 0<n do.
   dlen=. >: IHI-ILO
