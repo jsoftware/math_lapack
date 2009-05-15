@@ -13,21 +13,23 @@ NB.   RMASK - values to return bit mask: each bit corresponds
 NB.           to value should be returned: 2b1000 means
 NB.           "only Q", 2b0001 means "only R", 2b1111 means
 NB.           "all", 2b0000 is prohibited, 2b1001 is default
-NB.   Q     - M-by-M matrix. If A is complex, then Q is
+NB.   Q     - M-by-K matrix. If A is complex, then Q is
 NB.           unitary, otherwise it's orthogonal
-NB.   H     - M-by-min(M,N) matrix of the elementary
-NB.           reflectors H(i), stored columnwise
-NB.   TAU   - min(M,N)-vector, scalar factors of the
-NB.           elementary reflectors
-NB.   R     - min(M,N)-by-N upper trapezoidal matrix R (R is
+NB.   H     - M-by-K matrix of the elementary reflectors
+NB.           H(i), stored columnwise
+NB.   TAU   - K-vector, scalar factors of the elementary
+NB.           reflectors
+NB.   R     - K-by-N upper trapezoidal matrix R (R is
 NB.           upper triangular if M >= N)
+NB.   K     = min(M,N)
 NB.   M     >= 0
 NB.   N     >= 0
 NB.
 NB. if:
+NB.   K=. <./ 'M N'=. $ A
 NB.   'Q H TAU R'=. 2b1111 geqrf A
 NB. then
-NB.   Q -: mp/ (idmat M) -"2 TAU * (* +)"0/~"1 |:H
+NB.   Q -: (M,K) {. mp/ (idmat M) -"2 TAU * (* +)"0/~"1 |: H
 NB.   A -: Q mp R
 
 geqrf=: (2b1001&$: : (4 : 0)) " 0 2
@@ -65,13 +67,13 @@ q=. h=. r=. izero
 if. 2b1101 (17 b.) x do.
   val=. |: (n,m) $a
   if. 2b1100 (17 b.) x do.
-    h=. (idmat m,k) + sltri (m,k) {. val
+    h=. (m,k) {. (idmat m,n) + sltri val
   end.
   if. 2b0001 (17 b.) x do.
-    r=. utri val
+    r=. k {. utri val
   end.
   if. 2b1000 (17 b.) x do.
-    q=. mp/ (idmat m) -"2 tau * (* +)"0/~"1 |:h
+    q=. (m,k) {. mp/ (idmat m) -"2 tau * (* +)"0/~"1 |: h
   end.
 end.
 
