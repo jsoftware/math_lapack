@@ -1,5 +1,8 @@
 math/lapack - change history
 
+== 1.1.16 ==
+ * chg: gehrd: backward-compatible interface extension to match mt addon
+
 == 1.1.15 ==
  * fix: geqrf, gerqf: some code clean-up
  * add: gelqf, geqlf
