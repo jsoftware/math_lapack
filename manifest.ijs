@@ -8,7 +8,7 @@ LAPACK (Linear Algebra Package) is a set of routines for solving systems of simu
 
 VERSION=: '1.1.16'
 
-RELEASE=: 'j601 j602 701'
+RELEASE=: 'j601 j602'
 
 LABCATEGORY=: 'Math'
 
