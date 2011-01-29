@@ -1,4 +1,15 @@
-NB. built from project: ~Addons/math/lapack/lapack
+NB. init
+
+3 : 0''
+if. IFJ6 do.
+  script_z_ '~system/main/numeric.ijs'
+else.
+  require 'numeric'
+end.
+''
+)
+
+coclass 'jlapack'
 NB. lapack utils
 NB.
 NB. lapzero etc.
@@ -26,11 +37,6 @@ NB. invperm       inverse permutation of x by pivot indices
 NB.               from y
 NB. makepermat    generate inverse permutation matrix P from
 NB.               pivot indices y
-
-script_z_ '~system/main/numeric.ijs'
-
-coclass 'jlapack'
-
 
 cd=: 15!:0
 
@@ -207,18 +213,22 @@ NB.              from y
 NB. makepermat - generate inverse permutation matrix P from
 NB.              pivot indices y
 
-ipiv2scrp=: ((}: ^: ({. -: {:)) &. >)@(<"1)@(i.@# ,. <:)  NB. pivot indices to standard cycle representation of the permutation
+NB. ipiv2scrp=: ((}: ^: ({. -: {:)) &. >)@(<"1)@(i.@# ,. <:)  NB. pivot indices to standard cycle representation of the permutation
+ipiv2scrp=: <"1@(#~ ~:/"1)@(i.@# ,. <:)  NB. pivot indices to standard cycle representation of the permutation
 invperm=: C.~ ipiv2scrp
 makepermat=: C. @ ipiv2scrp =/ i. @ #
 
 NB. =========================================================
 NB. error - display message and signal error
 error=: 3 : 0
-wdinfo y
+if. IFJ6 do.
+  wdinfo y
+else.
+  sminfo y
+end.
 error=. 13!:8@1:
 error ''
 )
-
 NB. lapack validation
 NB.
 NB. validation routines that check argument is a matrix:
@@ -261,16 +271,23 @@ vhermitian=: 'argument should be a hermitian matrix' f ishermitian [ vmatrix
 vorthogonal=: 'argument should be an orthogonal matrix' f isorthogonal [ vmatrix
 vsquare=: 'argument should be a square matrix' f issquare [ vmatrix
 vsymposdef=: 'argument should be a symmetric positive-definite matrix' f issymposdef [ vmatrix
-
-
 NB. lapack definitions
 
-sys=. (;:'Darwin Linux Win') i. <UNAME
-bin=. > sys { 'vecLib';'lapack.so';'jlapack.dll'
-dar=. '/System/Library/Frameworks/vecLib.framework/'
+path=: jpath '~addons/math/lapack/'
 
-path=: jpath '~addons\math\lapack\'
-dll=: '"',((sys{0 1 1){::dar;path),bin,'" '
+3 : 0''
+if. IF64 do.
+  '64-bit not supported' 13!:8[10
+end.
+if. UNAME-:'Linux' do.
+  dll=: '"',path,'lapack.so" '
+elseif. UNAME-:'Darwin' do.
+  dll=: '/System/Library/Frameworks/vecLib.framework/vecLib '
+elseif. UNAME-:'Win' do.
+  dll=: '"',path,'jlapack.dll" '
+end.
+''
+)
 
 NB. =========================================================
 call=: 4 : 0

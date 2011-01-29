@@ -1,11 +1,20 @@
 NB. lapack definitions
 
-sys=. (;:'Darwin Linux Win') i. <UNAME
-bin=. > sys { 'vecLib';'lapack.so';'jlapack.dll'
-dar=. '/System/Library/Frameworks/vecLib.framework/'
+path=: jpath '~addons/math/lapack/'
 
-path=: jpath '~addons\math\lapack\'
-dll=: '"',((sys{0 1 1){::dar;path),bin,'" '
+3 : 0''
+if. IF64 do.
+  '64-bit not supported' 13!:8[10
+end.
+if. UNAME-:'Linux' do.
+  dll=: '"',path,'lapack.so" '
+elseif. UNAME-:'Darwin' do.
+  dll=: '/System/Library/Frameworks/vecLib.framework/vecLib '
+elseif. UNAME-:'Win' do.
+  dll=: '"',path,'jlapack.dll" '
+end.
+''
+)
 
 NB. =========================================================
 call=: 4 : 0
