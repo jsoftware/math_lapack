@@ -30,7 +30,7 @@ end.
 NB. =========================================================
 docs=: 3 : 0
 if. 0>4!:0 <'dirs' do. load 'dir' end.
-dirs jhostpath path,'doc\*.lap'
+dirs jpathsep path,'doc/*.lap'
 )
 
 NB. =========================================================
@@ -41,5 +41,5 @@ require (<path) ,each (;:y) ,each <'.ijs'
 NB. =========================================================
 routines=: 3 : 0
 if. 0>4!:0 <'dirs' do. load 'dir' end.
-dirs jhostpath path,'*.ijs'
+dirs jpathsep path,'*.ijs'
 )

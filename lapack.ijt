@@ -164,7 +164,7 @@ The calculation of eigenvalues using LAPACK is an integral part of a new demo of
 
 Access this demo from the menu Studio|Demos|eigenpictures, or by loading it directly:
 
-load '~system\examples\graphics\isigraph\eigenpic.ijs'
+load '~system/examples/graphics/isigraph/eigenpic.ijs'
 )
 
 NB. =========================================================
