@@ -285,6 +285,8 @@ elseif. UNAME-:'Darwin' do.
   dll=: '/System/Library/Frameworks/vecLib.framework/vecLib '
 elseif. UNAME-:'Win' do.
   dll=: '"',path,'jlapack.dll" '
+elseif. do.
+  'plaform not supported' 13!:8[10
 end.
 ''
 )
