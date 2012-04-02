@@ -54,7 +54,7 @@ ztrtrs.ijs
 history.txt
 )
 
-PLATFORMS=: 'win linux darwin'
+PLATFORMS=: ''
 
 FILESWIN=: 'jlapack.dll'
 FILESLINUX=: 'lapack.so'
