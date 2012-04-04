@@ -1,5 +1,8 @@
 math/lapack - change history
 
+== 1.1.18 ==
+ * does not run under android
+
 == 1.1.17 ==
  * initial import to J701
  * fix: lartg: permissions

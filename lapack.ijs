@@ -286,7 +286,7 @@ elseif. UNAME-:'Darwin' do.
 elseif. UNAME-:'Win' do.
   dll=: '"',path,'jlapack.dll" '
 elseif. do.
-  'plaform not supported' 13!:8[10
+  'platform not supported' 13!:8[10
 end.
 ''
 )
