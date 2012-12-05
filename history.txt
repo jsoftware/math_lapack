@@ -1,5 +1,8 @@
 math/lapack - change history
 
+== 1.1.19 ==
+ * s/wdinfo/sminfo/
+
 == 1.1.18 ==
  * does not run under android
 

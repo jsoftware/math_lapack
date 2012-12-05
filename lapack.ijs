@@ -221,11 +221,7 @@ makepermat=: C. @ ipiv2scrp =/ i. @ #
 NB. =========================================================
 NB. error - display message and signal error
 error=: 3 : 0
-if. IFJ6 do.
-  wdinfo y
-else.
-  sminfo y
-end.
+sminfo y
 error=. 13!:8@1:
 error ''
 )
