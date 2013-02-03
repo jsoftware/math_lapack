@@ -1,7 +1,7 @@
 math/lapack - change history
 
 == 1.1.20 ==
- * j801
+ * chg: update for j801
 
 == 1.1.19 ==
  * s/wdinfo/sminfo/
