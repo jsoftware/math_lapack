@@ -265,11 +265,15 @@ NB. lapack definitions
 path=: jpath '~addons/math/lapack/'
 
 3 : 0''
-if. IF64 do.
+if. IF64 > UNAME-:'Linux' do.
   '64-bit not supported' 13!:8[10
 end.
 if. UNAME-:'Linux' do.
-  dll=: '"',path,'lapack.so" '
+  if. IF64 do.
+    dll=: '"',path,'lapack64.so" '
+  else.
+    dll=: '"',path,'lapack.so" '
+  end.
 elseif. UNAME-:'Darwin' do.
   dll=: '/System/Library/Frameworks/vecLib.framework/vecLib '
 elseif. UNAME-:'Win' do.
