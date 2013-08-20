@@ -3,7 +3,7 @@ NB. lapack definitions
 path=: jpath '~addons/math/lapack/'
 
 3 : 0''
-if. IF64 > UNAME-:'Linux' do.
+if. IF64 *. UNAME-:'Win' do.
   '64-bit not supported' 13!:8[10
 end.
 if. UNAME-:'Linux' do.
