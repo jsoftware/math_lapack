@@ -6,7 +6,7 @@ DESCRIPTION=: 0 : 0
 LAPACK (Linear Algebra Package) is a set of routines for solving systems of simultaneous linear equations, least-squares solutions of linear systems of equations, eigenvalue problems, and singular value problems. The associated matrix factorizations (LU, Cholesky, QR, SVD, Schur, generalized Schur) are also provided, as are related computations such as reordering of the Schur factorizations and estimating condition numbers.
 )
 
-VERSION=: '1.1.25'
+VERSION=: '1.1.26'
 
 RELEASE=: 'j701 j801'
 
@@ -57,5 +57,8 @@ history.txt
 PLATFORMS=: ''
 
 FILESWIN=: 'jlapack.dll'
-FILESLINUX=: 'lapack.so'
+FILESLINUX=: 0 : 0
+lapack.so
+lapack_raspi32.so
+)
 FILESLINUX64=: 'lapack64.so'

@@ -10,7 +10,7 @@ if. UNAME-:'Linux' do.
   if. IF64 do.
     dll=: '"',path,'lapack64.so" '
   else.
-    dll=: '"',path,'lapack.so" '
+    dll=: '"',path,'lapack',(IFRASPI#'_raspi32'),'.so" '
   end.
 elseif. UNAME-:'Darwin' do.
   dll=: '/System/Library/Frameworks/vecLib.framework/vecLib '
