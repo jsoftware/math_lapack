@@ -297,8 +297,9 @@ end.
 
 NB. =========================================================
 docs=: 3 : 0
-if. 0>4!:0 <'dirs' do. load 'dir' end.
-dirs jpathsep path,'doc/*.lap'
+NB. if. 0>4!:0 <'dirs' do. load 'dir' end.
+NB. dirs jpathsep path,'doc/*.lap'
+{.("1) 1!:0 jpathsep path,'doc/*.lap'
 )
 
 NB. =========================================================
@@ -308,6 +309,7 @@ require (<path) ,each (;:y) ,each <'.ijs'
 
 NB. =========================================================
 routines=: 3 : 0
-if. 0>4!:0 <'dirs' do. load 'dir' end.
-dirs jpathsep path,'*.ijs'
+NB. if. 0>4!:0 <'dirs' do. load 'dir' end.
+NB. dirs jpathsep path,'*.ijs'
+{.("1) 1!:0 jpathsep path,'*.ijs'
 )
