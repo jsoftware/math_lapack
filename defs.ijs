@@ -7,10 +7,29 @@ if. IF64 *. UNAME-:'Win' do.
   '64-bit not supported' 13!:8[10
 end.
 if. UNAME-:'Linux' do.
-  if. IF64 do.
-    dll=: '"',path,'lapack64.so" '
-  else.
-    dll=: '"',path,'lapack',(IFRASPI#'_raspi32'),'.so" '
+  FHS=. (FHS"_)^:(0=4!:0<'FHS') (0)
+  if. 0=FHS do.
+    if. IF64 do.
+      dll=: '"',path,'lapack64.so" '
+    else.
+      dll=: '"',path,'lapack',(IFRASPI#'_raspi32'),'.so" '
+    end.
+  elseif. 1=FHS do.
+    if. IF64 do.
+      dll=: '/usr/lib/lapack64.so '
+    else.
+      dll=: '/usr/lib/lapack',(IFRASPI#'_raspi32'),'.so '
+    end.
+  elseif. 2=FHS do.
+    if. IF64 do.
+      dll=: '/usr/lib/x86_64-linux-gnu/lapack64.so '
+    else.
+      if. IFRASPI do.
+        dll=: '/usr/lib/arm-linux-gnueabihf/lapack_raspi32.so '
+      else.
+        dll=: '/usr/lib/i386-linux-gnu/lapack.so '
+      end.
+    end.
   end.
 elseif. UNAME-:'Darwin' do.
   dll=: '/System/Library/Frameworks/vecLib.framework/vecLib '
