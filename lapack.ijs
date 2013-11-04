@@ -277,17 +277,13 @@ if. UNAME-:'Linux' do.
       dll=: '"',path,'lapack',(IFRASPI#'_raspi32'),'.so" '
     end.
   elseif. 1=FHS do.
-    if. IF64 do.
-      dll=: '/usr/lib/lapack64.so '
-    else.
-      dll=: '/usr/lib/lapack',(IFRASPI#'_raspi32'),'.so '
-    end.
+    dll=: '/usr/lib/lapack.so '
   elseif. 2=FHS do.
-    if. IF64 do.
-      dll=: '/usr/lib/x86_64-linux-gnu/lapack64.so '
+    if. IFRASPI do.
+      dll=: '/usr/lib/arm-linux-gnueabihf/lapack.so '
     else.
-      if. IFRASPI do.
-        dll=: '/usr/lib/arm-linux-gnueabihf/lapack_raspi32.so '
+      if. IF64 do.
+        dll=: '/usr/lib/x86_64-linux-gnu/lapack.so '
       else.
         dll=: '/usr/lib/i386-linux-gnu/lapack.so '
       end.
