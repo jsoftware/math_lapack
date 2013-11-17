@@ -11,7 +11,7 @@ libblas.dll liblapack.dll : from http://icl.cs.utk.edu/lapack-for-windows/lapack
 libgcc_s_sjlj-1.dll libgfortran-3.dll libquadmath-0.dll : runtime dll files from mingw
 )
 
-VERSION=: '1.1.31'
+VERSION=: '1.1.32'
 
 RELEASE=: 'j801'
 
