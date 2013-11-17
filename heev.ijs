@@ -59,7 +59,7 @@ arg=. iox xtoken 'jobz;uplo;n;a;lda;w;work;lwork;rwork;info'
 
 (cutarg arg)=. routine call , each ".arg
 
-if. info~:0 do.
+if. 0~:info=. fixint info do.
   error routine;'info result: ',":info return.
 end.
 

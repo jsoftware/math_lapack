@@ -117,9 +117,11 @@ arg=. iox xtoken 'fact;trans;n;nrhs;a;lda;af;ldaf;ipiv;equed;r;c;b;ldb;x;ldx;rco
 
 (cutarg arg)=. routine call , each ".arg
 
-if. info~:0 do.
+if. 0~:info=. fixint info do.
   error routine;'info result: ',":info return.
 end.
+
+ipiv=. fixint ipiv
 
 u=. l=. izero
 

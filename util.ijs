@@ -25,6 +25,7 @@ NB. invperm       inverse permutation of x by pivot indices
 NB.               from y
 NB. makepermat    generate inverse permutation matrix P from
 NB.               pivot indices y
+NB. fixint        fix 64-bit integer
 
 cd=: 15!:0
 
@@ -212,4 +213,19 @@ error=: 3 : 0
 sminfo y
 error=. 13!:8@1:
 error ''
+)
+
+NB. =========================================================
+NB. fixint - fix 64-bit integer
+fixint=: 3 : 0
+if. IF64*.JLAPACK='F' do.
+  s=. $y
+  if. 2>*/s do.
+    (17 b.)&16bffffffff y
+  else.
+    s$ _2 ic (*/4,s){. (3 ic ,y)
+  end.
+else.
+  y
+end.
 )

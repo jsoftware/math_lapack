@@ -86,9 +86,11 @@ arg=. iox xtoken 'm;n;nrhs;a;lda;b;ldb;s;rcond;rank;work;lwork;rwork;info'
 
 (cutarg arg)=. routine call , each ".arg
 
-if. info~:0 do.
+if. 0~:info=. fixint info do.
   error routine;'info result: ',":info return.
 end.
+
+rank=. fixint rank
 
 if. 2b1000 (17 b.) x do.
   b=. n {. (|: @: (sb & $))^:(ismatrix mvb) b

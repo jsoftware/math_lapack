@@ -46,7 +46,7 @@ arg=. 'uplo;n;a;lda;info'
 
 (cutarg arg)=. routine call , each ".arg
 
-if. info~:0 do.
+if. 0~:info=. fixint info do.
   error routine;'info result: ',":info return.
 end.
 

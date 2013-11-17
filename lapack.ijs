@@ -3,6 +3,69 @@ NB. init
 require 'numeric'
 
 coclass 'jlapack'
+NB. lapack definitions
+
+path=: jpath '~addons/math/lapack/'
+
+3 : 0''
+NB. if. IF64 *. UNAME-:'Win' do.
+NB.   '64-bit not supported' 13!:8[10
+NB. end.
+if. UNAME-:'Linux' do.
+  dll=: 'liblapack.so.3 '
+  JLAPACK=: 'F'
+elseif. UNAME-:'Darwin' do.
+  JLAPACK=: 'J'
+  dll=: '/System/Library/Frameworks/vecLib.framework/vecLib '
+elseif. UNAME-:'Win' do.
+  if. IF64 do.
+    dll=: 'liblapack.dll '
+    JLAPACK=: 'F'
+  else.
+    dll=: '"',path,'jlapack.dll" '
+    JLAPACK=: 'J'
+  end.
+elseif. do.
+  'platform not supported' 13!:8[10
+end.
+''
+)
+
+NB. =========================================================
+call=: 4 : 0
+if. 'F'=JLAPACK do.
+  x=. dll,x,'_ + n ',(+:#y)$' *'
+  r=. x cd LASTIN=: y
+  LASTOUT=: }.r
+elseif. 'J'=JLAPACK do.
+  x=. dll,x,'_ + i ',(+:#y)$' *'
+  r=. x cd LASTIN=: y
+  if. > {. r do.
+    error x;'lapack dll return code: ',": > {. r
+  else.
+    LASTOUT=: }.r
+  end.
+end.
+)
+
+NB. =========================================================
+docs=: 3 : 0
+NB. if. 0>4!:0 <'dirs' do. load 'dir' end.
+NB. dirs jpathsep path,'doc/*.lap'
+{.("1) 1!:0 jpathsep path,'doc/*.lap'
+)
+
+NB. =========================================================
+need=: 3 : 0
+require (<path) ,each (;:y) ,each <'.ijs'
+)
+
+NB. =========================================================
+routines=: 3 : 0
+NB. if. 0>4!:0 <'dirs' do. load 'dir' end.
+NB. dirs jpathsep path,'*.ijs'
+{.("1) 1!:0 jpathsep path,'*.ijs'
+)
 NB. lapack utils
 NB.
 NB. lapzero etc.
@@ -30,6 +93,7 @@ NB. invperm       inverse permutation of x by pivot indices
 NB.               from y
 NB. makepermat    generate inverse permutation matrix P from
 NB.               pivot indices y
+NB. fixint        fix 64-bit integer
 
 cd=: 15!:0
 
@@ -218,6 +282,21 @@ sminfo y
 error=. 13!:8@1:
 error ''
 )
+
+NB. =========================================================
+NB. fixint - fix 64-bit integer
+fixint=: 3 : 0
+if. IF64*.JLAPACK='F' do.
+  s=. $y
+  if. 2>*/s do.
+    (17 b.)&16bffffffff y
+  else.
+    s$ _2 ic (*/4,s){. (3 ic ,y)
+  end.
+else.
+  y
+end.
+)
 NB. lapack validation
 NB.
 NB. validation routines that check argument is a matrix:
@@ -260,61 +339,3 @@ vhermitian=: 'argument should be a hermitian matrix' f ishermitian [ vmatrix
 vorthogonal=: 'argument should be an orthogonal matrix' f isorthogonal [ vmatrix
 vsquare=: 'argument should be a square matrix' f issquare [ vmatrix
 vsymposdef=: 'argument should be a symmetric positive-definite matrix' f issymposdef [ vmatrix
-NB. lapack definitions
-
-path=: jpath '~addons/math/lapack/'
-
-3 : 0''
-if. IF64 *. UNAME-:'Win' do.
-  '64-bit not supported' 13!:8[10
-end.
-if. UNAME-:'Linux' do.
-  FHS=. (FHS"_)^:(0=4!:0<'FHS') (0)
-  if. 0=FHS do.
-    if. IF64 do.
-      dll=: '"',path,'lapack64.so" '
-    else.
-      dll=: '"',path,'lapack',(IFRASPI#'_raspi32'),'.so" '
-    end.
-  else.
-    dll=: 'lapack.so '
-  end.
-elseif. UNAME-:'Darwin' do.
-  dll=: '/System/Library/Frameworks/vecLib.framework/vecLib '
-elseif. UNAME-:'Win' do.
-  dll=: '"',path,'jlapack.dll" '
-elseif. do.
-  'platform not supported' 13!:8[10
-end.
-''
-)
-
-NB. =========================================================
-call=: 4 : 0
-x=. dll,x,'_ + i ',(+:#y)$' *'
-r=. x cd LASTIN=: y
-if. > {. r do.
-  error x;'lapack dll return code: ',": > {. r
-else.
-  LASTOUT=: }.r
-end.
-)
-
-NB. =========================================================
-docs=: 3 : 0
-NB. if. 0>4!:0 <'dirs' do. load 'dir' end.
-NB. dirs jpathsep path,'doc/*.lap'
-{.("1) 1!:0 jpathsep path,'doc/*.lap'
-)
-
-NB. =========================================================
-need=: 3 : 0
-require (<path) ,each (;:y) ,each <'.ijs'
-)
-
-NB. =========================================================
-routines=: 3 : 0
-NB. if. 0>4!:0 <'dirs' do. load 'dir' end.
-NB. dirs jpathsep path,'*.ijs'
-{.("1) 1!:0 jpathsep path,'*.ijs'
-)

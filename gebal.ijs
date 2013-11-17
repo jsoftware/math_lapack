@@ -83,9 +83,12 @@ arg=. 'job;n;a;lda;ilo;ihi;scale;info'
 
 (cutarg arg)=. routine call , each ".arg
 
-if. info~:0 do.
+if. 0~:info=. fixint info do.
   error routine;'info result: ',":info return.
 end.
+
+ilo=. fixint ilo
+ihi=. fixint ihi
 
 if. 2b1000 (17 b.) x do.
   a=. |: (2$n)$a

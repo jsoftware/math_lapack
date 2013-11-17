@@ -3,24 +3,23 @@ NB. lapack definitions
 path=: jpath '~addons/math/lapack/'
 
 3 : 0''
-if. IF64 *. UNAME-:'Win' do.
-  '64-bit not supported' 13!:8[10
-end.
+NB. if. IF64 *. UNAME-:'Win' do.
+NB.   '64-bit not supported' 13!:8[10
+NB. end.
 if. UNAME-:'Linux' do.
-  FHS=. (FHS"_)^:(0=4!:0<'FHS') (0)
-  if. 0=FHS do.
-    if. IF64 do.
-      dll=: '"',path,'lapack64.so" '
-    else.
-      dll=: '"',path,'lapack',(IFRASPI#'_raspi32'),'.so" '
-    end.
-  else.
-    dll=: 'lapack.so '
-  end.
+  dll=: 'liblapack.so.3 '
+  JLAPACK=: 'F'
 elseif. UNAME-:'Darwin' do.
+  JLAPACK=: 'J'
   dll=: '/System/Library/Frameworks/vecLib.framework/vecLib '
 elseif. UNAME-:'Win' do.
-  dll=: '"',path,'jlapack.dll" '
+  if. IF64 do.
+    dll=: 'liblapack.dll '
+    JLAPACK=: 'F'
+  else.
+    dll=: '"',path,'jlapack.dll" '
+    JLAPACK=: 'J'
+  end.
 elseif. do.
   'platform not supported' 13!:8[10
 end.
@@ -29,12 +28,18 @@ end.
 
 NB. =========================================================
 call=: 4 : 0
-x=. dll,x,'_ + i ',(+:#y)$' *'
-r=. x cd LASTIN=: y
-if. > {. r do.
-  error x;'lapack dll return code: ',": > {. r
-else.
+if. 'F'=JLAPACK do.
+  x=. dll,x,'_ + n ',(+:#y)$' *'
+  r=. x cd LASTIN=: y
   LASTOUT=: }.r
+elseif. 'J'=JLAPACK do.
+  x=. dll,x,'_ + i ',(+:#y)$' *'
+  r=. x cd LASTIN=: y
+  if. > {. r do.
+    error x;'lapack dll return code: ',": > {. r
+  else.
+    LASTOUT=: }.r
+  end.
 end.
 )
 
