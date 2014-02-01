@@ -96,13 +96,8 @@ The LAPACK routines are quite fast. For example:
 )
 PREPARE
 3 : 0''
-if. IFWINCE_j_ do.
-  smoutput '   mat=: ?20 20$1000'
-  mat__=: ?20 20$1000
-else.
-  smoutput '   mat=: ?100 100$1000'
-  mat__=: ?100 100$1000
-end.
+smoutput '   mat=: ?100 100$1000'
+mat__=: ?100 100$1000
 )
 PREPARE
 
