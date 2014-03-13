@@ -3,9 +3,6 @@ NB. lapack definitions
 path=: jpath '~addons/math/lapack/'
 
 3 : 0''
-NB. if. IF64 *. UNAME-:'Win' do.
-NB.   '64-bit not supported' 13!:8[10
-NB. end.
 if. UNAME-:'Linux' do.
   dll=: 'liblapack.so.3 '
   JLAPACK=: 'F'
@@ -14,8 +11,13 @@ elseif. UNAME-:'Darwin' do.
   dll=: '/System/Library/Frameworks/vecLib.framework/vecLib '
 elseif. UNAME-:'Win' do.
   if. IF64 do.
-    dll=: 'liblapack.dll '
-    JLAPACK=: 'F'
+    if. fexist path,'jlapack64.dll' do.
+      dll=: '"',path,'jlapack64.dll" '
+      JLAPACK=: 'J'
+    else.
+      dll=: 'liblapack.dll '
+      JLAPACK=: 'F'
+    end.
   else.
     dll=: '"',path,'jlapack.dll" '
     JLAPACK=: 'J'

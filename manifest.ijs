@@ -9,9 +9,11 @@ Binary for Linux, install liblapack3 (or similar) from your distro repository.
 For 64-bit windows, it needs 5 dll files,
 libblas.dll liblapack.dll : from http://icl.cs.utk.edu/lapack-for-windows/lapack/#libraries
 libgcc_s_sjlj-1.dll libgfortran-3.dll libquadmath-0.dll : runtime dll files from mingw
+
+A prebuilt jlapack64.dll is provided by David Hotham and is included in this addon.  Note that this jlapack64.dll requres a msvc runtime which can be downloaded from http://www.microsoft.com/en-us/download/details.aspx?id=2092 .
 )
 
-VERSION=: '1.1.33'
+VERSION=: '1.1.34'
 
 RELEASE=: 'j801'
 
@@ -65,3 +67,4 @@ history.txt
 PLATFORMS=: ''
 
 FILESWIN=: 'jlapack.dll'
+FILESWIN64=: 'jlapack64.dll'
