@@ -1,5 +1,5 @@
 LABTITLE=: 'LAPACK'
-LABFOCUS=: 0
+LABDEPENDS=: 'math/eigenpic math/lapack'
 
 NB. =========================================================
 Lab Section LAPACK
