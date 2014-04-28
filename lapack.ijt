@@ -155,11 +155,11 @@ If you write LAPACK interfaces, please send them to us so they can be included i
 
 NB. =========================================================
 Lab Section
-The calculation of eigenvalues using LAPACK is an integral part of a new demo of eigenpictures. These show the action of a matrix on unit vectors, and highlight the eigenvalues, which appear as a scaling factor times the eigenvectors.
+The calculation of eigenvalues using LAPACK is an integral part of a demo of eigenpictures. These show the action of a matrix on unit vectors, and highlight the eigenvalues, which appear as a scaling factor times the eigenvectors.
 
-Access this demo from the menu Studio|Demos|eigenpictures, or by loading it directly:
+Access this demo with:
 
-load '~system/examples/graphics/isigraph/eigenpic.ijs'
+   load 'math/eigenpic'
 )
 
 NB. =========================================================
