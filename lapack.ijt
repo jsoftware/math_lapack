@@ -1,5 +1,5 @@
 LABTITLE=: 'LAPACK'
-LABDEPENDS=: 'math/eigenpic math/lapack'
+LABDEPENDS=: 'math/lapack'
 
 NB. =========================================================
 Lab Section LAPACK
@@ -155,11 +155,11 @@ If you write LAPACK interfaces, please send them to us so they can be included i
 
 NB. =========================================================
 Lab Section
-The calculation of eigenvalues using LAPACK is an integral part of a demo of eigenpictures. These show the action of a matrix on unit vectors, and highlight the eigenvalues, which appear as a scaling factor times the eigenvectors.
+The calculation of eigenvalues using LAPACK is an integral part of the math/eigenpic demo. This shows the action of a matrix on unit vectors, and highlight the eigenvalues, which appear as a scaling factor times the eigenvectors.
 
-Access this demo with:
+Install the math/eigenpic package, and load as:
 
-   load 'math/eigenpic'
+load 'math/eigenpic'
 )
 
 NB. =========================================================
