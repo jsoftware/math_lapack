@@ -6,14 +6,17 @@ DESCRIPTION=: 0 : 0
 LAPACK (Linear Algebra Package) is a set of routines for solving systems of simultaneous linear equations, least-squares solutions of linear systems of equations, eigenvalue problems, and singular value problems. The associated matrix factorizations (LU, Cholesky, QR, SVD, Schur, generalized Schur) are also provided, as are related computations such as reordering of the Schur factorizations and estimating condition numbers.
 
 Binary for Linux, install liblapack3 (or similar) from your distro repository.
+
 For 64-bit windows, it needs 5 dll files,
 libblas.dll liblapack.dll : from http://icl.cs.utk.edu/lapack-for-windows/lapack/#libraries
 libgcc_s_sjlj-1.dll libgfortran-3.dll libquadmath-0.dll : runtime dll files from mingw
 
 A prebuilt jlapack64.dll is provided by David Hotham and is included in this addon.  Note that this jlapack64.dll requres a msvc runtime which can be downloaded from http://www.microsoft.com/en-us/download/details.aspx?id=2092 .
+
+For Android, liblapack-armv7.so is included in package. Older Android devices using ARMv6 requires liblapack-armv5.so which can be downloaded from http://www.jsoftware.com/download/liblapack-armv5.so , and then copy this file to folder ~/addons/math/lapack .
 )
 
-VERSION=: '1.1.36'
+VERSION=: '1.1.37'
 
 RELEASE=: 'j802'
 
@@ -68,3 +71,4 @@ PLATFORMS=: ''
 
 FILESWIN=: 'jlapack.dll'
 FILESWIN64=: 'jlapack64.dll'
+FILESANDROID=: 'liblapack-armv7.so'

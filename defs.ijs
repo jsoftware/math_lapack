@@ -22,6 +22,10 @@ elseif. UNAME-:'Win' do.
     dll=: '"',path,'jlapack.dll" '
     JLAPACK=: 'J'
   end.
+elseif. UNAME-:'Android' do.
+  JLAPACK=: 'J'
+  armv6=. 1 e.'ARMv6' E. 2!:0 'cat /proc/cpuinfo'
+  dll=: '"',path,'liblapack-armv',(armv6{'75'),'.so" '
 elseif. do.
   'platform not supported' 13!:8[10
 end.
