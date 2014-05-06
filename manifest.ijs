@@ -13,10 +13,10 @@ libgcc_s_sjlj-1.dll libgfortran-3.dll libquadmath-0.dll : runtime dll files from
 
 A prebuilt jlapack64.dll is provided by David Hotham and is included in this addon.  Note that this jlapack64.dll requres a msvc runtime which can be downloaded from http://www.microsoft.com/en-us/download/details.aspx?id=2092 .
 
-For Android, liblapack-armv7.so is included in package. Older Android devices using ARMv6 requires liblapack-armv5.so which can be downloaded from http://www.jsoftware.com/download/liblapack-armv5.so , and then copy this file to folder ~/addons/math/lapack .
+For Android, run install_jlapack_'' to install the shared library into ~bin folder.
 )
 
-VERSION=: '1.1.37'
+VERSION=: '1.1.38'
 
 RELEASE=: 'j802'
 
@@ -71,4 +71,3 @@ PLATFORMS=: ''
 
 FILESWIN=: 'jlapack.dll'
 FILESWIN64=: 'jlapack64.dll'
-FILESANDROID=: 'liblapack-armv7.so'

@@ -30,7 +30,7 @@ elseif. UNAME-:'Win' do.
 elseif. UNAME-:'Android' do.
   JLAPACK=: 'J'
   armv6=. 1 e.'ARMv6' E. 2!:0 'cat /proc/cpuinfo'
-  dll=: '"',path,'liblapack-armv',(armv6{'75'),'.so" '
+  dll=: '"',(jpath'~bin/'),'liblapack-armv',(armv6{'75'),'.so" '
 elseif. do.
   'platform not supported' 13!:8[10
 end.
@@ -72,6 +72,21 @@ NB. if. 0>4!:0 <'dirs' do. load 'dir' end.
 NB. dirs jpathsep path,'*.ijs'
 {.("1) 1!:0 jpathsep path,'*.ijs'
 )
+
+install=: 3 : 0
+if. -. UNAME-:'Android' do. return. end.
+armv6=. 1 e.'ARMv6' E. 2!:0 'cat /proc/cpuinfo'
+require 'pacman'
+'rc p'=. httpget_jpacman_ 'http://www.jsoftware.com/download/', z=. 'liblapack-armv',(armv6{'75'),'.so'
+if. rc do.
+  smoutput 'unable to download: ',z return.
+end.
+(<jpath'~bin/',z) 1!:2~ 1!:1 <p
+1!:55 ::0: p
+smoutput 'file installed: ',z
+EMPTY
+)
+
 NB. lapack utils
 NB.
 NB. lapzero etc.
