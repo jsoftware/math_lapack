@@ -29,8 +29,7 @@ elseif. UNAME-:'Win' do.
   end.
 elseif. UNAME-:'Android' do.
   JLAPACK=: 'J'
-  armv6=. 1 e.'ARMv6' E. 2!:0 'cat /proc/cpuinfo'
-  dll=: '"',(jpath'~bin/'),'liblapack-armv',(armv6{'75'),'.so" '
+  dll=: '"',(jpath'~bin/'),'liblapack.so" '
 elseif. do.
   'platform not supported' 13!:8[10
 end.
@@ -81,9 +80,9 @@ require 'pacman'
 if. rc do.
   smoutput 'unable to download: ',z return.
 end.
-(<jpath'~bin/',z) 1!:2~ 1!:1 <p
-1!:55 ::0: p
-smoutput 'file installed: ',z
+(<jpath'~bin/liblapack.so') 1!:2~ 1!:1 <p
+1!:55 ::0: <p
+smoutput 'done'
 EMPTY
 )
 
