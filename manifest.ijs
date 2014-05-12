@@ -16,7 +16,7 @@ A prebuilt jlapack64.dll is provided by David Hotham and is included in this add
 For Android, run install_jlapack_'' to install the shared library into ~bin folder.
 )
 
-VERSION=: '1.1.39'
+VERSION=: '1.1.40'
 
 RELEASE=: 'j802'
 
