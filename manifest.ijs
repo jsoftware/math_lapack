@@ -67,7 +67,7 @@ tests.ijs
 history.txt
 )
 
-PLATFORMS=: 'linux win darwin android'
+PLATFORMS=: ''
 
 FILESWIN=: 'jlapack.dll'
 FILESWIN64=: 'jlapack64.dll'
