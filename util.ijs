@@ -218,7 +218,7 @@ error ''
 NB. =========================================================
 NB. fixint - fix 64-bit integer
 fixint=: 3 : 0
-if. IF64*.JLAPACK='F' do.
+if. IF64*.IFWIN+.JLAPACK='F' do.
   s=. $y
   if. 2>*/s do.
     (17 b.)&16bffffffff y
