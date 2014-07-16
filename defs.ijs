@@ -25,6 +25,9 @@ elseif. UNAME-:'Win' do.
 elseif. UNAME-:'Android' do.
   JLAPACK=: 'J'
   dll=: '"',(jpath'~bin/'),'liblapack.so" '
+  if. 0=fexist dltb dll -. '"' do.
+    smoutput 'lapack error: please run install_jlapack_'''' to install liblapack.so'
+  end.
 elseif. do.
   'platform not supported' 13!:8[10
 end.
