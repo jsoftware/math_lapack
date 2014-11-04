@@ -4,27 +4,30 @@ path=: jpath '~addons/math/lapack/'
 
 3 : 0''
 if. UNAME-:'Linux' do.
-  dll=: 'liblapack.so.3 '
+  dll=: 'liblapack.so.3'
   JLAPACK=: 'F'
 elseif. UNAME-:'Darwin' do.
   JLAPACK=: 'J'
-  dll=: '/System/Library/Frameworks/vecLib.framework/vecLib '
+  dll=: '/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/vecLib'
+  if. -.fexist dll do.
+    dll=: '/System/Library/Frameworks/vecLib.framework/vecLib'
+  end.
 elseif. UNAME-:'Win' do.
   if. IF64 do.
     if. fexist path,'jlapack64.dll' do.
-      dll=: '"',path,'jlapack64.dll" '
+      dll=: '"',path,'jlapack64.dll"'
       JLAPACK=: 'J'
     else.
-      dll=: 'liblapack.dll '
+      dll=: 'liblapack.dll'
       JLAPACK=: 'F'
     end.
   else.
-    dll=: '"',path,'jlapack.dll" '
+    dll=: '"',path,'jlapack.dll"'
     JLAPACK=: 'J'
   end.
 elseif. UNAME-:'Android' do.
   JLAPACK=: 'J'
-  dll=: '"',(jpath'~bin/'),'liblapack.so" '
+  dll=: '"',(jpath'~bin/'),'liblapack.so"'
   if. 0=fexist dltb dll -. '"' do.
     smoutput 'lapack error: please run install_jlapack_'''' to install liblapack.so'
   end.
@@ -37,11 +40,11 @@ end.
 NB. =========================================================
 call=: 4 : 0
 if. 'F'=JLAPACK do.
-  x=. dll,x,'_ + n ',(+:#y)$' *'
+  x=. dll,' ',x,'_ + n ',(+:#y)$' *'
   r=. x cd LASTIN=: y
   LASTOUT=: }.r
 elseif. 'J'=JLAPACK do.
-  x=. dll,x,'_ + i ',(+:#y)$' *'
+  x=. dll,' ',x,'_ + i ',(+:#y)$' *'
   r=. x cd LASTIN=: y
   if. > {. r do.
     error x;'lapack dll return code: ',": > {. r
