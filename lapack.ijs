@@ -13,9 +13,13 @@ if. UNAME-:'Linux' do.
   JLAPACK=: 'F'
 elseif. UNAME-:'Darwin' do.
   JLAPACK=: 'J'
-  dll=: '/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/vecLib'
-  if. -.fexist dll do.
-    dll=: '/System/Library/Frameworks/vecLib.framework/vecLib'
+  if. IFIOS do.
+    dll=: '/System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/vecLib'
+  else.
+    dll=: '/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/vecLib'
+    if. -.fexist dll do.
+      dll=: '/System/Library/Frameworks/vecLib.framework/vecLib'
+    end.
   end.
 elseif. UNAME-:'Win' do.
   if. IF64 do.
