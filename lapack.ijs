@@ -84,13 +84,18 @@ NB. dirs jpathsep path,'*.ijs'
 
 install=: 3 : 0
 if. -. UNAME-:'Android' do. return. end.
-armv6=. 1 e.'ARMv6' E. 2!:0 'cat /proc/cpuinfo'
+arch=. LF-.~ 2!:0'getprop ro.product.cpu.abi'
+if. 'armeabi-v7a'-:arch do. pkg=. 'armv7'
+elseif. 'armeabi'-:arch do. pkg=. 'armv5'
+elseif. do. pkg=. 'x86'
+end.
 require 'pacman'
-'rc p'=. httpget_jpacman_ 'http://www.jsoftware.com/download/', z=. 'liblapack-armv',(armv6{'75'),'.so'
+'rc p'=. httpget_jpacman_ 'http://www.jsoftware.com/download/', z=. 'liblapack-',pkg,'.so'
 if. rc do.
   smoutput 'unable to download: ',z return.
 end.
 (<jpath'~bin/liblapack.so') 1!:2~ 1!:1 <p
+2!:0 ::0: 'chmod 644 ',jpath'~bin/liblapack.so'
 1!:55 ::0: <p
 smoutput 'done'
 EMPTY
