@@ -32,7 +32,7 @@ elseif. UNAME-:'Win' do.
 elseif. UNAME-:'Android' do.
   JLAPACK=: 'J'
   arch=. LF-.~ 2!:0'getprop ro.product.cpu.abi'
-  dll=: '"',(jpath'~bin/../libexec/',arch,'/liblapack.so'),'"'
+  dll=: '"',(jpath'~bin/../libexec/android-libs/',arch,'/liblapack.so'),'"'
   if. 0=fexist dltb dll -. '"' do.
     smoutput 'lapack error: please run install_jlapack_'''' to install liblapack.so'
   end.
@@ -86,8 +86,8 @@ require 'pacman'
 if. rc do.
   smoutput 'unable to download: ',z return.
 end.
-(<jpath'~bin/../libexec/',arch,'/liblapack.so') 1!:2~ 1!:1 <p
-2!:0 ::0: 'chmod 644 "',(jpath'~bin/../libexec/',arch,'/liblapack.so'),'"'
+(<jpath'~bin/../libexec/android-libs/',arch,'/liblapack.so') 1!:2~ 1!:1 <p
+2!:0 ::0: 'chmod 644 "',(jpath'~bin/../libexec/android-libs/',arch,'/liblapack.so'),'"'
 1!:55 ::0: <p
 smoutput 'done'
 EMPTY
