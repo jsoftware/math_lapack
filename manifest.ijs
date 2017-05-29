@@ -5,18 +5,18 @@ CAPTION=: 'LAPACK'
 DESCRIPTION=: 0 : 0
 LAPACK (Linear Algebra Package) is a set of routines for solving systems of simultaneous linear equations, least-squares solutions of linear systems of equations, eigenvalue problems, and singular value problems. The associated matrix factorizations (LU, Cholesky, QR, SVD, Schur, generalized Schur) are also provided, as are related computations such as reordering of the Schur factorizations and estimating condition numbers.
 
-Binary for Linux, install liblapack3 (or similar) from your distro repository.
+Binary for Mac is provided by the veclib framework.
 
-For 64-bit windows, it needs 5 dll files,
-libblas.dll liblapack.dll : from http://icl.cs.utk.edu/lapack-for-windows/lapack/#libraries
-libgcc_s_sjlj-1.dll libgfortran-3.dll libquadmath-0.dll : runtime dll files from mingw
+Binary for Linux, install liblapack3 (or similar) from your distro repository. If available, install libopenblas-base or libatlas3-base which provides an optimized version of BLAS.
 
-A prebuilt jlapack64.dll is provided by David Hotham and is included in this addon.  Note that this jlapack64.dll requres a msvc runtime which can be downloaded from http://www.microsoft.com/en-us/download/details.aspx?id=2092 .
+For 64-bit windows, a prebuilt jlapack64.dll is provided by David Hotham and is included in this addon.  Note that this jlapack64.dll requres a msvc runtime which can be downloaded from http://www.microsoft.com/en-us/download/details.aspx?id=2092 .
 
-For Android, run install_jlapack_'' to install the shared library into ~bin folder.
+For Android, run install_jlapack_'' to install the shared library.
+
+Reference BLAS implementation may be orders of magnitude slower than optimized implementations.
 )
 
-VERSION=: '1.1.51'
+VERSION=: '1.1.52'
 
 RELEASE=: 'j802 j803 j804 j805 j806'
 
