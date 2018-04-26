@@ -1,0 +1,9 @@
+NB. project: ~Addons/math/lapack
+NB.
+NB. defines list of source files.
+NB. path defaults to project directory.
+
+init.ijs
+defs.ijs
+util.ijs
+val.ijs

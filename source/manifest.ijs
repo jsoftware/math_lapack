@@ -18,9 +18,7 @@ Reference BLAS implementation may be orders of magnitude slower than optimized i
 
 VERSION=: '1.1.53'
 
-RELEASE=: ''
-
-FOLDER=: 'math/lapack'
+RELEASE=: 'j802 j803 j804 j805 j806 j807'
 
 LABCATEGORY=: 'Math'
 
