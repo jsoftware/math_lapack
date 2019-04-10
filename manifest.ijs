@@ -16,9 +16,9 @@ For Android, run install_jlapack_'' to install the shared library.
 Reference BLAS implementation may be orders of magnitude slower than optimized implementations.
 )
 
-VERSION=: '1.1.53'
+VERSION=: '1.1.54'
 
-RELEASE=: ''
+RELEASE=: 'j804 j807'
 
 FOLDER=: 'math/lapack'
 
