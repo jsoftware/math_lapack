@@ -32,6 +32,11 @@ elseif. UNAME-:'Win' do.
 elseif. UNAME-:'Android' do.
   JLAPACK=: 'J'
   arch=. LF-.~ 2!:0'getprop ro.product.cpu.abi'
+  if. IF64 < arch-:'arm64-v8a' do.
+    arch=. 'armeabi-v7a'
+  elseif. IF64 < arch-:'x86_64' do.
+    arch=. 'x86'
+  end.
   dll=: '"',(jpath'~bin/../libexec/android-libs/',arch,'/liblapack.so'),'"'
   if. 0=fexist dltb dll -. '"' do.
     smoutput 'lapack error: please run install_jlapack_'''' to install liblapack.so'
@@ -81,6 +86,11 @@ NB. dirs jpathsep path,'*.ijs'
 install=: 3 : 0
 if. -. UNAME-:'Android' do. return. end.
 arch=. LF-.~ 2!:0'getprop ro.product.cpu.abi'
+if. IF64 < arch-:'arm64-v8a' do.
+  arch=. 'armeabi-v7a'
+elseif. IF64 < arch-:'x86_64' do.
+  arch=. 'x86'
+end.
 require 'pacman'
 'rc p'=. httpget_jpacman_ 'http://www.jsoftware.com/download/android/libs/',arch, '/', z=. 'liblapack.so'
 if. rc do.
