@@ -112,7 +112,7 @@ smoutput 'AB ILO IHI SCALE'=. gebal y
 p=. (ILO , IHI) makeper SCALE
 d=. ((>:&ILO *. <:&IHI) #\ i. # y)} 1 ,: SCALE
 echo r=. AB match d (*"1 % [) p ([ C."1 C.) y  NB. compare AB with D^_1 * P * A * P^_1 * D
-0 pick a
+0 pick r
 )
 
 NB. =========================================================
