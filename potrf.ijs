@@ -34,7 +34,7 @@ ic=. iscomplex y
 zero=. ic {:: dzero ; zzero
 routine=. ic { 'dpotrf' ,: 'zpotrf'
 
-vsymposdef`vhermitian @. (ic"_) y
+vsymmetric`vhermitian @. (ic"_) y
 
 uplo=. 'L'
 n=. #y
