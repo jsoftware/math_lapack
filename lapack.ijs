@@ -391,7 +391,7 @@ NB.    vmatrix
 NB.    vhermitian
 NB.    vorthogonal
 NB.    vsquare
-NB.    vsymposdef
+NB.    vsymmetric
 NB.
 NB. validation routines that check argument is either
 NB. a matrix or vector:
