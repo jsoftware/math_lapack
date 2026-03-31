@@ -16,7 +16,7 @@ For Android, run install_jlapack_'' to install the shared library.
 Reference BLAS implementation may be orders of magnitude slower than optimized implementations.
 )
 
-VERSION=: '1.1.56'
+VERSION=: '1.1.57'
 
 RELEASE=: 'j804 j807'
 
@@ -73,3 +73,7 @@ PLATFORMS=: ''
 
 FILESWIN=: 'jlapack.dll'
 FILESWIN64=: 'jlapack64.dll'
+
+DEPENDS=: 0 : 0
+general/misc
+)
